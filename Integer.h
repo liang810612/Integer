@@ -33,7 +33,11 @@
 template <typename II, typename OI>
 OI shift_left_digits (II b, II e, int n, OI x) {
     // <your code>
-    return x;}
+    OI y = std::copy(b,e,x);
+    OI z = y;
+    std::advance(z,n);
+    std::fill(y, z, 0);
+    return z;}
 
 // ------------------
 // shift_right_digits
@@ -51,6 +55,12 @@ OI shift_left_digits (II b, II e, int n, OI x) {
 template <typename II, typename OI>
 OI shift_right_digits (II b, II e, int n, OI x) {
     // <your code>
+    II temp = e - n;
+    while(b != temp){
+        *x = *b;
+        b++;
+        x++;
+    }
     return x;}
 
 // -----------
@@ -70,7 +80,8 @@ OI shift_right_digits (II b, II e, int n, OI x) {
  */
 template <typename II1, typename II2, typename OI>
 OI plus_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
-    // <your code>
+   // <your code>
+
     return x;}
 
 // ------------
