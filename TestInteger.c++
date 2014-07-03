@@ -62,12 +62,35 @@ TEST(Integer, shift_left_digits) {
     const int* p = shift_left_digits(a, a + 3, 2, x);
     ASSERT_EQ(5, p - x);
     ASSERT_TRUE(std::equal(const_cast<const int*>(x), p, b));}
+    
+TEST(Integer, shift_left_digits_2) {
+    const int a[] = {1};
+    const int b[] = {1, 0, 0, 0, 0};
+          int x[10];
+    const int* p = shift_left_digits(a, a + 1, 4, x);
+    ASSERT_EQ(5, p - x);
+    ASSERT_TRUE(std::equal(const_cast<const int*>(x), p, b));}
 
+TEST(Integer, shift_left_digits_3) {
+    const int a[] = {2, 3, 4, 5};
+    const int b[] = {2, 3, 4, 5, 0, 0};
+          int x[10];
+    const int* p = shift_left_digits(a, a + 4, 2, x);
+    ASSERT_EQ(6, p - x);
+    ASSERT_TRUE(std::equal(const_cast<const int*>(x), p, b));}
+
+TEST(Integer, shift_left_digits_4) {
+    const int a[] = {0};
+    const int b[] = {0, 0, 0};
+          int x[10];
+    const int* p = shift_left_digits(a, a + 1, 2, x);
+    ASSERT_EQ(3, p - x);
+    ASSERT_TRUE(std::equal(const_cast<const int*>(x), p, b));}        
 // ------------------
 // shift_right_digits
 // ------------------
 
-TEST(Integer, shift_right_digits) {
+TEST(Integer, shift_right_digits_1) {
     const int a[] = {2, 3, 4};
     const int b[] = {2};
           int x[10];
@@ -75,6 +98,29 @@ TEST(Integer, shift_right_digits) {
     ASSERT_EQ(1, p - x);
     ASSERT_TRUE(std::equal(const_cast<const int*>(x), p, b));}
 
+TEST(Integer, shift_right_digits_2) {
+    const int a[] = {2, 3, 4};
+    const int b[] = {2, 3};
+          int x[10];
+    const int* p = shift_right_digits(a, a + 3, 1, x);
+    ASSERT_EQ(2, p - x);
+    ASSERT_TRUE(std::equal(const_cast<const int*>(x), p, b));}
+
+TEST(Integer, shift_right_digits_3) {
+    const int a[] = {2, 3, 4};
+    const int b[] = {2, 3, 4};
+          int x[10];
+    const int* p = shift_right_digits(a, a + 3, 0, x);
+    ASSERT_EQ(3, p - x);
+    ASSERT_TRUE(std::equal(const_cast<const int*>(x), p, b));}
+
+TEST(Integer, shift_right_digits_4) {
+    const int a[] = {2, 3, 4, 5, 6, 7, 8};
+    const int b[] = {2};
+          int x[10];
+    const int* p = shift_right_digits(a, a + 7, 6, x);
+    ASSERT_EQ(1, p - x);
+    ASSERT_TRUE(std::equal(const_cast<const int*>(x), p, b));}        
 // -----------
 // plus_digits
 // -----------
