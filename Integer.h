@@ -81,8 +81,93 @@ OI shift_right_digits (II b, II e, int n, OI x) {
 template <typename II1, typename II2, typename OI>
 OI plus_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
    // <your code>
+    std::vector<int> number1;
+    std::vector<int> number2;
+    int length1 = 0;
+    int length2 = 0;
 
-    return x;}
+    // for(; b1 != e1; ++b1){
+    //     number1.push_back(*b1);
+    //     ++length1;
+    // }
+    // for(; b2 != e2; ++b2){
+    //     number2.push_back(*b2);
+    //     ++length2;
+    // }
+    while(b1 != e1){
+        
+        number1.push_back(*b1);
+        b1++;
+        length1++;
+    }
+    while(b2 != e2){
+
+        number2.push_back(*b2);
+        b2++;
+        length2++;
+    }
+
+    reverse(number1.begin(), number1.end());
+    reverse(number2.begin(), number2.end());
+    int max_length = std::max(length1, length2);
+
+    std::vector<int> result(max_length);
+    int carry = 0;
+    int temp = 0;
+    for (int i = 0; i < max_length; i++){
+        // number1 and number2has the same length
+        if (i <= length1 && i <= length2){
+            temp = number1[i] + number2[i] + carry;
+            if (temp > 9){
+                carry = 1;
+                temp -= 10;
+                result[i] = temp;
+            }
+            else{
+                result[i] = temp;
+                carry = 0;
+            }
+        }
+        //number1 is longer
+        else if(i < length1 && i >= length2){
+            temp = number1[i] + carry;
+            if(temp > 9){
+                carry = 1;
+                temp -= 10;
+                result[i] = temp;
+            }
+            else{
+                result[i] = temp;
+                carry = 0;
+            }
+        }
+        //number2 is longer
+        else{
+            temp = number2[i] + carry;
+            if(temp > 9){
+                carry = 1;
+                temp -= 10;
+                result[i] = temp;
+            }
+            else{
+                carry = 0;
+                result[i] = temp;
+            }
+        }
+    }
+
+    if (carry == 1){
+        result.push_back(1);
+        max_length ++;
+    }
+
+    for(int j = max_length-1; j >= 0; --j, ++x)
+        *x = result[j];
+
+
+
+    return x;
+}
 
 // ------------
 // minus_digits
