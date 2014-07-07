@@ -16,6 +16,7 @@
 #include <stdexcept> // invalid_argument
 #include <string>    // string
 #include <vector>    // vector
+    #include <algorithm> // equal
 using namespace std;
 // -----------------
 // shift_left_digits
