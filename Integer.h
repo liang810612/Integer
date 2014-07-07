@@ -16,7 +16,11 @@
 #include <stdexcept> // invalid_argument
 #include <string>    // string
 #include <vector>    // vector
+<<<<<<< HEAD
 #include <algorithm>
+=======
+    #include <algorithm> // equal
+>>>>>>> c0d6f543b2896360b9058946bb07cc442a9179cf
 using namespace std;
 // -----------------
 // shift_left_digits
