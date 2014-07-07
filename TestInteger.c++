@@ -42,7 +42,7 @@ To obtain coverage of the test:
 #include <sstream>   // ostringstream
 #include <stdexcept> // invalid_argument
 #include <string>    // ==
-    #include <algorithm> // equal
+#include <algorithm> // equal
 
 #include "gtest/gtest.h"
 
@@ -184,15 +184,7 @@ TEST(Integer, minus_digits_2) {
         const int c[] = {9, 6, 7};
               int x[10];
         const int* p = minus_digits(a, a + 4, b, b + 2, x);
-<<<<<<< HEAD
-        
-=======
 
-        // for(int i = 0 ; i<4; i++){
-        //     cout << *x<<endl;
-        //     x++;
-        // }
->>>>>>> c0d6f543b2896360b9058946bb07cc442a9179cf
         ASSERT_EQ(3, p - x );
         ASSERT_TRUE(std::equal(const_cast<const int*>(x), p, c));
     }

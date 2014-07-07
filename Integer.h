@@ -16,11 +16,8 @@
 #include <stdexcept> // invalid_argument
 #include <string>    // string
 #include <vector>    // vector
-<<<<<<< HEAD
-#include <algorithm>
-=======
-    #include <algorithm> // equal
->>>>>>> c0d6f543b2896360b9058946bb07cc442a9179cf
+#include <algorithm> // equal
+
 using namespace std;
 // -----------------
 // shift_left_digits
@@ -164,55 +161,6 @@ OI plus_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
     }
     return x;
 }
-// =======
- 
-//     int counter = 1;
-//     int temp = 0;
-//     OI y = x;
-
-//     while(b1 != e1){
-//         counter++;
-//         b1++;
-//     }
-//     for(int i = 1; i <= counter ; i++)
-//         b1--;
-//     // //int arr[counter]; 
-//     for(int i = 1; i <= counter ; i++){
-//         *x = (*b1 + *b2);
-//         *y = (*b1 + *b2);
-//         b1++;
-//         b2++;
-//         x++;
-//         y++;
-//     }
-//     for(int i = 1; i <= counter; i++){
-//         y--;
-//         if(*y >= 10){
-//             counter++;
-//             break;
-//         } 
-//     }
-
-//     for(int i = 1 ; i <= counter; i++){  
-//         if(*x >= 10){
-//             *x = (*x % 10) + temp;
-//             temp = 1;
-//         }       
-//         else{
-//             *x = *x % 10 + temp;
-//             if(*x >=10){
-//                 temp = 1;
-//                 *x = (*x % 10);
-//             }
-//         }   
-//         x--;
-//     }
-     // while(counter != 1){
-     //     x++;
-     //     counter--;
-     // }
-    // return x;}
-// >>>>>>> Stashed changes
 
 // ------------
 // minus_digits
