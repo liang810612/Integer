@@ -228,19 +228,20 @@ OI minus_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
                 result[i] = temp;
             }
         }
-        cout << temp << endl;
     }
+
+    if(borrow == true){
+        result.pop_back();
+        max_length--;
+    }
+
+
     int j = max_length - 1;
     while(max_length--){
         *x = result[j];
         j--;
         x++;
     }
-
-    // for(int c = 0; c < 3; c++){
-    //     cout << *x << endl;
-    //     x++;
-    // }
 
 
     return x;
@@ -264,7 +265,38 @@ OI minus_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
 template <typename II1, typename II2, typename OI>
 OI multiplies_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
     // <your code>
-    return x;}
+    // std::vector<int> number1;
+    // std::vector<int> number2;
+    // int length1 = 0;
+    // int length2 = 0;
+
+    // while(b1 != e1){
+    //     number1.push_back(*b1);
+    //     b1++;
+    //     length1++;
+    // }
+    // while(b2 != e2){
+    //     number2.push_back(*b2);
+    //     b2++;
+    //     length2++;
+    // }
+
+    // reverse(number1.begin(), number1.end());
+    // reverse(number2.begin(), number2.end());
+    // int max_length = std::max(length1, length2);
+
+    // int m[length2][length1]; // [row] [col]
+
+    // for(int i = 0; i < length2; i++){
+    //     for(int j = 0; j < length1; j++){
+    //         m[i][j] = number2[b] * number1[a];
+    //     }
+    // }
+
+return x;
+
+
+}
 
 // --------------
 // divides_digits
