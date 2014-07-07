@@ -37,11 +37,12 @@ To obtain coverage of the test:
 // includes
 // --------
 
-#include <algorithm> // equal
+
 #include <cstring>   // strcmp
 #include <sstream>   // ostringstream
 #include <stdexcept> // invalid_argument
 #include <string>    // ==
+    #include <algorithm> // equal
 
 #include "gtest/gtest.h"
 
