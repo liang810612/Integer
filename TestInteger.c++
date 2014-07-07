@@ -183,11 +183,7 @@ TEST(Integer, minus_digits_2) {
         const int c[] = {9, 6, 7};
               int x[10];
         const int* p = minus_digits(a, a + 4, b, b + 2, x);
-
-        for(int i = 0 ; i<4; i++){
-            cout << *x<<endl;
-            x++;
-        }
+        
         ASSERT_EQ(3, p - x );
         ASSERT_TRUE(std::equal(const_cast<const int*>(x), p, c));
     }

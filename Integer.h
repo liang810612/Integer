@@ -16,6 +16,7 @@
 #include <stdexcept> // invalid_argument
 #include <string>    // string
 #include <vector>    // vector
+#include <algorithm>
 using namespace std;
 // -----------------
 // shift_left_digits
@@ -81,6 +82,7 @@ OI shift_right_digits (II b, II e, int n, OI x) {
 template <typename II1, typename II2, typename OI>
 OI plus_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
    // <your code>
+// <<<<<<< Updated upstream
     std::vector<int> number1;
     std::vector<int> number2;
     int length1 = 0;
@@ -98,8 +100,8 @@ OI plus_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
         length2++;
     }
 
-    reverse(number1.begin(), number1.end());
-    reverse(number2.begin(), number2.end());
+    std::reverse(number1.begin(), number1.end());
+    std::reverse(number2.begin(), number2.end());
     int max_length = std::max(length1, length2);
 
     std::vector<int> result(max_length);
@@ -158,6 +160,55 @@ OI plus_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
     }
     return x;
 }
+// =======
+ 
+//     int counter = 1;
+//     int temp = 0;
+//     OI y = x;
+
+//     while(b1 != e1){
+//         counter++;
+//         b1++;
+//     }
+//     for(int i = 1; i <= counter ; i++)
+//         b1--;
+//     // //int arr[counter]; 
+//     for(int i = 1; i <= counter ; i++){
+//         *x = (*b1 + *b2);
+//         *y = (*b1 + *b2);
+//         b1++;
+//         b2++;
+//         x++;
+//         y++;
+//     }
+//     for(int i = 1; i <= counter; i++){
+//         y--;
+//         if(*y >= 10){
+//             counter++;
+//             break;
+//         } 
+//     }
+
+//     for(int i = 1 ; i <= counter; i++){  
+//         if(*x >= 10){
+//             *x = (*x % 10) + temp;
+//             temp = 1;
+//         }       
+//         else{
+//             *x = *x % 10 + temp;
+//             if(*x >=10){
+//                 temp = 1;
+//                 *x = (*x % 10);
+//             }
+//         }   
+//         x--;
+//     }
+     // while(counter != 1){
+     //     x++;
+     //     counter--;
+     // }
+    // return x;}
+// >>>>>>> Stashed changes
 
 // ------------
 // minus_digits
@@ -265,6 +316,30 @@ OI minus_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
 template <typename II1, typename II2, typename OI>
 OI multiplies_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
     // <your code>
+    std::vector<int> number1;
+    std::vector<int> number2;
+    std::vector<int> vectorSum;
+    int counter = 0;
+    int counter2 = 0;
+    OI tempSum = x;
+    while(b1!= e1){
+        number1.push_back(*b1);
+        b1++;
+        counter++;
+    }
+    while(b2 != e2){
+        number2.push_back(*b2);
+        b2++;
+        counter2++;
+    }
+    for(vector<int>::iterator i = number1.begin();i != number1.end(); i++){
+        for(vector<int>::iterator i = number2.begin();i != number2.end(); i++){
+
+        }
+    }
+
+
+//---------------------------------------------------    
     // std::vector<int> number1;
     // std::vector<int> number2;
     // int length1 = 0;
@@ -292,7 +367,7 @@ OI multiplies_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
     //         m[i][j] = number2[b] * number1[a];
     //     }
     // }
-
+//--------------------------------------------------
 return x;
 
 
