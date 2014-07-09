@@ -399,7 +399,7 @@ OI multiplies_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
                 x++;
             }             
         }
-        else{ 
+        else{ // same size in both array
             std::vector< vector<int> >vectorSum (counter, vector<int>(counter2+counter2-1, 0));
             // store values of two arrays into vectorSum
             int index2 = counter2-1; 
