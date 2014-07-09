@@ -470,7 +470,42 @@ return x;
 template <typename II1, typename II2, typename OI>
 OI divides_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
     // <your code>
+    std::vector<int> number1;
+    std::vector<int> number2;
+    std::vector<int> tempSum;
+    int counter = 0;
+    int counter2 = 0;
+    while(b1!= e1){
+        number1.push_back(*b1);
+        b1++;
+        counter++;
+    }
+    while(b2 != e2){
+        number2.push_back(*b2);
+        b2++;
+        counter2++;
+    }    
     return x;}
+    if(counter < counter2){
+        *x = 0;
+    }
+    else if(counter == counter2){
+        if(){
+            
+        }
+        else if(){ //counter value > couter2 value 
+
+        }
+    }
+    else(){ // counter > counter2
+
+    }
+
+
+
+
+
+
 
 // -------
 // Integer
