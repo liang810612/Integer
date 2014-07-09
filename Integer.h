@@ -195,18 +195,20 @@ OI minus_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
         b2++;
         length2++;
     }
-
+    int len_diff = length1 - length2;
     reverse(number1.begin(), number1.end());
     reverse(number2.begin(), number2.end());
     int max_length = std::max(length1, length2);
 
+    while(len_diff--){
+        number2.push_back(0);
+    }
 
     int temp = 0;
     bool borrow = false;
     std::vector<int> result(max_length);
 
     for(int i = 0; i < max_length; i++){
-        
         if (borrow == false){
             if(number1[i] >= number2[i]){
                 temp =  number1[i] - number2[i];
@@ -220,7 +222,7 @@ OI minus_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
             }
         }
         else{// borrow == true
-            if(number1[i] >= number2[i]){
+            if(number1[i] > number2[i]){
                 temp = number1[i] - 1 - number2[i];
                 borrow = false;
                 result[i] = temp;
@@ -233,14 +235,15 @@ OI minus_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
         }
     }
 
-    if(borrow == true){
+    while(( number1.size() != 1) && result[(max_length-1)] == 0){
+        // cout<< "run this shit!"<< endl;
         result.pop_back();
         max_length--;
     }
 
-
     int j = max_length - 1;
-    while(max_length--){
+    while( max_length--){
+        //cout << "hereeeeeeeeeeeeeeeeeee   "<< result[j]<<endl;  
         *x = result[j];
         j--;
         x++;
@@ -268,27 +271,27 @@ OI minus_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
 template <typename II1, typename II2, typename OI>
 OI multiplies_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
     // <your code>
-    std::vector<int> number1;
-    std::vector<int> number2;
-    std::vector<int> vectorSum;
-    int counter = 0;
-    int counter2 = 0;
-    OI tempSum = x;
-    while(b1!= e1){
-        number1.push_back(*b1);
-        b1++;
-        counter++;
-    }
-    while(b2 != e2){
-        number2.push_back(*b2);
-        b2++;
-        counter2++;
-    }
-    for(vector<int>::iterator i = number1.begin();i != number1.end(); i++){
-        for(vector<int>::iterator i = number2.begin();i != number2.end(); i++){
+    // std::vector<int> number1;
+    // std::vector<int> number2;
+    // std::vector<int> vectorSum;
+    // int counter = 0;
+    // int counter2 = 0;
+    // OI tempSum = x;
+    // while(b1!= e1){
+    //     number1.push_back(*b1);
+    //     b1++;
+    //     counter++;
+    // }
+    // while(b2 != e2){
+    //     number2.push_back(*b2);
+    //     b2++;
+    //     counter2++;
+    // }
+    // for(vector<int>::iterator i = number1.begin();i != number1.end(); i++){
+    //     for(vector<int>::iterator i = number2.begin();i != number2.end(); i++){
 
-        }
-    }
+    //     }
+    // }
 
 
 //---------------------------------------------------    
