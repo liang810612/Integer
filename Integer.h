@@ -486,49 +486,106 @@ OI divides_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
         counter2++;
     }    
 
-    // if(counter < counter2){
-    //     *x = 0;
-    // }
-    // else if(counter == counter2){
-    //     if(){
-            
-    //     }
-    //     else if(){ //counter value > couter2 value 
+    if(counter < counter2){
+        *x = 0;
+        x++;
+    }
+    else if(counter == counter2){
+        int divisor =0;
+        int unit = 1;
 
-    //     }
-    // }
-    // else(){ // counter > counter2
+        for(int i = counter2-1; i >= 0 ; i--){
+            divisor += number2[i] * unit;
+            unit *= 10;  
+        }
 
-    // }
-int divisor =0;
-int unit = 1;
+        int dividend =0;
+        int unit2 = 1;
 
-for(int i = counter2-1; i >= 0 ; i--){
-    divisor += number2[i] * unit;
-    unit *= 10;  
-}
+        for(int i = counter -1 ; i >=0; i--){
+            dividend += number1[i] * unit2;
+            unit2 *= 10;
+        }
 
-int dividend =0;
-int unit2 = 1;
+        if(divisor > dividend || dividend == 0){
+            *x = 0;
+            x++;
+        }
+        else{ //counter value > couter2 value 
+            int answer = dividend / divisor;
 
-for(int i = counter -1 ; i >=0; i--){
-    dividend += number1[i] * unit2;
-    unit2 *= 10;
-    //cout << dividend << endl;
-}
+            while(answer != 0){
+                int num = answer%10;
+               // cout << "answer: " << num << endl;
+                tempSum.push_back(num);
+                answer = answer / 10;
+            }
+            for(std::vector<int>::iterator it = tempSum.end()-1; it >= tempSum.begin(); it--){
+                *x = *it;
+                x++;            
+            }
+        }
+    }
+    else{ // counter > counter2
+        int divisor =0;
+        int unit = 1;
 
-int answer = dividend / divisor;
+        for(int i = counter2-1; i >= 0 ; i--){
+            divisor += number2[i] * unit;
+            unit *= 10;  
+        }
 
-while(answer != 0){
-    int num = answer%10;
-   // cout << "answer: " << num << endl;
-    tempSum.push_back(num);
-    answer = answer / 10;
-}
-for(std::vector<int>::iterator it = tempSum.end()-1; it >= tempSum.begin(); it--){
-    *x = *it;
-    x++;            
-}
+        int dividend =0;
+        int unit2 = 1;
+
+        for(int i = counter -1 ; i >=0; i--){
+            dividend += number1[i] * unit2;
+            unit2 *= 10;
+            //cout << dividend << endl;
+        }
+
+        int answer = dividend / divisor;
+
+        while(answer != 0){
+            int num = answer%10;
+           // cout << "answer: " << num << endl;
+            tempSum.push_back(num);
+            answer = answer / 10;
+        }
+        for(std::vector<int>::iterator it = tempSum.end()-1; it >= tempSum.begin(); it--){
+            *x = *it;
+            x++;            
+        }        
+    }
+// int divisor =0;
+// int unit = 1;
+
+// for(int i = counter2-1; i >= 0 ; i--){
+//     divisor += number2[i] * unit;
+//     unit *= 10;  
+// }
+
+// int dividend =0;
+// int unit2 = 1;
+
+// for(int i = counter -1 ; i >=0; i--){
+//     dividend += number1[i] * unit2;
+//     unit2 *= 10;
+//     //cout << dividend << endl;
+// }
+
+// int answer = dividend / divisor;
+
+// while(answer != 0){
+//     int num = answer%10;
+//    // cout << "answer: " << num << endl;
+//     tempSum.push_back(num);
+//     answer = answer / 10;
+// }
+// for(std::vector<int>::iterator it = tempSum.end()-1; it >= tempSum.begin(); it--){
+//     *x = *it;
+//     x++;            
+// }
 
 
 return x;}
