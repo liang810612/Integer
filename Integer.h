@@ -271,60 +271,184 @@ OI minus_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
 template <typename II1, typename II2, typename OI>
 OI multiplies_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
     // <your code>
-    // std::vector<int> number1;
-    // std::vector<int> number2;
-    // std::vector<int> vectorSum;
-    // int counter = 0;
-    // int counter2 = 0;
-    // OI tempSum = x;
-    // while(b1!= e1){
-    //     number1.push_back(*b1);
-    //     b1++;
-    //     counter++;
-    // }
-    // while(b2 != e2){
-    //     number2.push_back(*b2);
-    //     b2++;
-    //     counter2++;
-    // }
-    // for(vector<int>::iterator i = number1.begin();i != number1.end(); i++){
-    //     for(vector<int>::iterator i = number2.begin();i != number2.end(); i++){
+    std::vector<int> number1;
+    std::vector<int> number2;
+    std::vector<int> tempSum;
+    int counter = 0;
+    int counter2 = 0;
+    while(b1!= e1){
+        number1.push_back(*b1);
+        b1++;
+        counter++;
+    }
+    while(b2 != e2){
+        number2.push_back(*b2);
+        b2++;
+        counter2++;
+    }
 
-    //     }
-    // }
+    // Specia case if one of the array has only one element and it is zero or both are one
+    if((number1[0] == 0|| number2[0] == 0) && (counter == 1 || counter2 ==1)){
+        *x = 0;
+        x++;
+    }
+    else if ((number2[0] == 1 && number1[0] == 1) && (counter == 1 || counter2 ==1)){
+        *x = 1;
+        x++;
+    } 
+    //array 1 has only one element with value 1
+    else if ( number1[0] == 1 && counter == 1 ){
+        for(std::vector<int>::iterator it = number2.begin(); it != number2.end(); it++){
+            *x = *it;
+            x++;            
+        }
+    }
+    //array 2 has only one element with value 1
+    else if ((number2[0] == 1 && counter2 ==1)){
+        for(std::vector<int>::iterator it = number1.begin(); it != number1.end(); it++){
+            *x = *it;
+            x++;            
+        }
+    }                      
+    else{
+        if(counter2 < counter){
+            std::vector< vector<int> >vectorSum (counter2, vector<int>(counter+counter2-1, 0));
+        // store values of two arrays into vectorSum
+            int index2 = counter2-1; 
+            int index = counter-1;
+            int temp;
+            int temp3 = counter;
+            for(int i = 0; i < counter2; i++){
+                temp = counter2 - i -1;
+                for(int j = counter; j > 0; j--){
+                    vectorSum[i][temp3+ temp -1] = (number1[index] * number2[index2]);
+                    index--;
+                    temp--;
+                }
+                index2--;
+                index = counter-1;
+            }
+            // calculate and store in digit form
+            int temp2 = counter2-1;
+            int carry = 0;
+            int sum;
+            for(int j = counter + temp2 ; j > 0; j--){ //longer elements array
+                sum = 0;
+                for(int i = 0; i < counter2 ; i++){  // shorter
+                    sum += vectorSum[i][j-1];
+                }
+                //*tempSum = (sum + carry) % 10;
+                tempSum.push_back((sum + carry) % 10);
+                carry = (sum+carry) /10;;
+                //tempSum++;       
+            }
+            int countX;
+            if(carry > 0){
+               countX = counter + temp2 ;    //longer elements array
+                tempSum.push_back(carry);
+            }
+
+            for(int i = countX; i >= 0; i--){
+                *x = tempSum[i];
+                x++;
+            }
+        }
+        else if(counter2 > counter){ //counter 2 > counter
+            std::vector< vector<int> >vectorSum (counter, vector<int>(counter+counter2-1, 0));
+        // store values of two arrays into vectorSum
+            int index2 = counter2-1; //3
+            int index = counter-1;   //1
+            int temp;
+            int temp3 = counter2;     //4
+
+            for(int i = 0; i < counter; i++){
+                temp = counter - i -1;       //1
+                for(int j = counter2; j > 0; j--){
+                    vectorSum[i][temp3+ temp -1] = (number1[index] * number2[index2]);
+                    index2--;
+                    temp--;
+                }
+                index--;
+                index2 = counter2-1;
+            }
+            // calculate and store in digit form
+            int temp2 = counter-1;
+            int carry = 0;
+            int sum;
+            for(int j = counter2 + temp2 ; j > 0; j--){
+                sum = 0;
+                for(int i = 0; i < counter ; i++){
+                    sum += vectorSum[i][j-1];
+                }
+                //*tempSum = (sum + carry) % 10;
+                tempSum.push_back((sum + carry) % 10);
+                carry = (sum+carry) /10;;
+                //tempSum++;       
+            }
+            int countX;
+            if(carry > 0){
+               countX = counter2 + temp2 ;
+                //*tempSum = *tempSum % 10;
+                tempSum.push_back(carry);
+                //int carry2 = *tempSum / 10;
+                //tempSum++;
+                //*tempSum = carry2;
+            }
+            for(int i = countX; i >= 0; i--){
+                *x = tempSum[i];
+                x++;
+            }             
+        }
+        else{ 
+            std::vector< vector<int> >vectorSum (counter, vector<int>(counter2+counter2-1, 0));
+            // store values of two arrays into vectorSum
+            int index2 = counter2-1; 
+            int index = counter-1;
+            int temp;
+            int temp3 = counter2;
+            for(int i = 0; i < counter; i++){
+                temp = counter - i -1;
+                for(int j = counter2; j > 0; j--){
+                    vectorSum[i][temp3+ temp -1] = (number2[index2]*number1[index]);
+                    index--;
+                    temp--;
+                }
+                index2--;
+                index = counter-1;
+            }
+            // calculate and store in digit form
+            int temp2 = counter-1;
+            int carry = 0;
+            int sum;
+            for(int j = counter + temp2 ; j > 0; j--){
+                sum = 0;
+                for(int i = 0; i < counter ; i++){
+                    sum += vectorSum[i][j-1];
+                }
+                //*tempSum = (sum + carry) % 10;
+                tempSum.push_back((sum + carry) % 10);
+                carry = (sum+carry) /10;;
+                //tempSum++;       
+            }
+            int countX;
+            if(carry > 0){
+               countX = counter2 + temp2 ;
+                //*tempSum = *tempSum % 10;
+                tempSum.push_back(carry);
+                //int carry2 = *tempSum / 10;
+                //tempSum++;
+                //*tempSum = carry2;
+            }
+
+            for(int i = countX; i >= 0; i--){
+                *x = tempSum[i];
+                x++;
+            } 
+        }     
+    }   
 
 
-//---------------------------------------------------    
-    // std::vector<int> number1;
-    // std::vector<int> number2;
-    // int length1 = 0;
-    // int length2 = 0;
-
-    // while(b1 != e1){
-    //     number1.push_back(*b1);
-    //     b1++;
-    //     length1++;
-    // }
-    // while(b2 != e2){
-    //     number2.push_back(*b2);
-    //     b2++;
-    //     length2++;
-    // }
-
-    // reverse(number1.begin(), number1.end());
-    // reverse(number2.begin(), number2.end());
-    // int max_length = std::max(length1, length2);
-
-    // int m[length2][length1]; // [row] [col]
-
-    // for(int i = 0; i < length2; i++){
-    //     for(int j = 0; j < length1; j++){
-    //         m[i][j] = number2[b] * number1[a];
-    //     }
-    // }
-//--------------------------------------------------
 return x;
-
 
 }
 

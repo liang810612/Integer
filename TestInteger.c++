@@ -224,7 +224,7 @@ TEST(Integer, minus_digits_5){
 // multiplies_digits
 // -----------------
 
-TEST(Integer, multiplies_digits) {
+TEST(Integer, multiplies_digits_1) {
     const int a[] = {2, 3, 4};
     const int b[] = {5, 6, 7};
     const int c[] = {1, 3, 2, 6, 7, 8};
@@ -232,6 +232,50 @@ TEST(Integer, multiplies_digits) {
     const int* p = multiplies_digits(a, a + 3, b, b + 3, x);
     ASSERT_EQ(6, p - x);
     ASSERT_TRUE(std::equal(const_cast<const int*>(x), p, c));}
+
+TEST(Integer, multiplies_digits_2) {
+    const int a[] = {0};
+    const int b[] = {5, 6, 7};
+    const int c[] = {0};
+          int x[10];
+    const int* p = multiplies_digits(a, a + 1, b, b + 3, x);
+    ASSERT_EQ(1, p - x);
+    ASSERT_TRUE(std::equal(const_cast<const int*>(x), p, c));}
+
+TEST(Integer, multiplies_digits_3) {
+    const int a[] = {1};
+    const int b[] = {1};
+    const int c[] = {1};
+          int x[10];
+    const int* p = multiplies_digits(a, a + 1, b, b + 1, x);
+    ASSERT_EQ(1, p - x);
+    ASSERT_TRUE(std::equal(const_cast<const int*>(x), p, c));}    
+TEST(Integer, multiplies_digits_4) {
+    const int a[] = {9,9,9,9};
+    const int b[] = {9,9};
+    const int c[] = {9, 8, 9, 9, 0, 1};
+          int x[10];
+    const int* p = multiplies_digits(a, a + 4, b, b + 2, x);
+    ASSERT_EQ(6, p - x);
+    ASSERT_TRUE(std::equal(const_cast<const int*>(x), p, c));}
+
+TEST(Integer, multiplies_digits_5) {
+    const int a[] = {9,9};
+    const int b[] = {9,9,9,9};
+    const int c[] = {9, 8, 9, 9, 0, 1};
+          int x[10];
+    const int* p = multiplies_digits(a, a + 2, b, b + 4, x);
+    ASSERT_EQ(6, p - x);
+    ASSERT_TRUE(std::equal(const_cast<const int*>(x), p, c));}
+
+TEST(Integer, multiplies_digits_6) {
+    const int a[] = {2, 3, 4};
+    const int b[] = {1};
+    const int c[] = {2, 3, 4};
+          int x[10];
+    const int* p = multiplies_digits(a, a + 3, b, b + 1, x);
+    ASSERT_EQ(3, p - x);
+    ASSERT_TRUE(std::equal(const_cast<const int*>(x), p, c));}  
 
 // --------------
 // divides_digits
