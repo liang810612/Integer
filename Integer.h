@@ -908,7 +908,21 @@ class Integer {
 
         bool valid () const { // class invariant
             // <your code>
-            return true;}
+            if(digits.size() < 1)
+                return false;
+            
+            if(digits.size() > 1 && digits[0] == 0)
+                return false;
+
+            if(digits.size() == 1 && digits[0] == 0 && negative)
+                return false;
+
+            for(int i = 0; (unsigned)i < digits.size(); i++){
+                if(digits[i] > 9 || digits[i] <0)
+                    return false;
+            }
+            return true;
+        }
 
     public:
         // ------------
@@ -940,18 +954,23 @@ class Integer {
             if(value == 0){
                 digits.push_back(0);
                 size ++;
+                digits.resize(size);
+                negative = false;
             }
             else{
                 while(value != 0){
                     digits.push_back(value % 10);
                     value = value / 10;
                     size ++;
+                    digits.resize(size);
                 }
             }
-            digits.resize(size);
+            
+            reverse(digits.begin(), digits.end());
             b_pos = digits.begin();
             e_pos = digits.end();
-            assert(valid());}
+            assert(valid());
+        }
 
         /**
          * <your documentation>
@@ -959,8 +978,21 @@ class Integer {
          */
         explicit Integer (const std::string& value) {
             // <your code>
+            int i = 0;
+            negative = false;
+            if(value[0] == '-'){
+                negative = true;
+                i++;
+            }
+            //int c = 0;
+            int t = value.length();
+            while(t--){
+                digits.push_back(value[i] - '0');
+                ++i;
+            }
             if (!valid())
-                throw std::invalid_argument("Integer::Integer()");}
+                throw std::invalid_argument("Integer()");
+        }
 
         // Default copy, destructor, and copy assignment.
         // Integer (const Integer&);
@@ -977,7 +1009,8 @@ class Integer {
         Integer operator - () const {
             // <your code>
             Integer res = *this;
-            res.negative = !res.negative;
+            if(res != 0)
+                res.negative = !res.negative;
             return res;
         }
 
@@ -1028,7 +1061,45 @@ class Integer {
          */
         Integer& operator += (const Integer& rhs) {
             // <your code>
-            return *this;}
+            if(digits.size() < (unsigned int)(max(distance(b_pos, e_pos), distance(rhs.b_pos, rhs.e_pos)) + 1))
+            {   
+                expand_capacity(max(distance(b_pos, e_pos), distance(rhs.b_pos, rhs.e_pos)) + 1);
+            }
+
+            if(negative != rhs.negative)
+            {
+                if(*this >= rhs)
+                {
+                    if(-rhs > *this)
+                    {
+                        negative = true;
+                        e_pos = minus_digits(rhs.b_pos, rhs.e_pos, b_pos, e_pos, b_pos);
+                    }
+                    else
+                    {
+                        e_pos = minus_digits(b_pos, e_pos, rhs.b_pos, rhs.e_pos, b_pos);
+                    }
+                }
+                else
+                {
+                    if(-(*this) <= rhs)
+                    {
+                        negative = false;
+                        e_pos = minus_digits(rhs.b_pos, rhs.e_pos, b_pos, e_pos, b_pos);
+                    }
+                    else
+                    {
+                        e_pos = minus_digits(b_pos, e_pos, rhs.b_pos, rhs.e_pos, b_pos);
+                    }
+                }
+                
+            }
+            else
+            {
+                e_pos = plus_digits(b_pos, e_pos, rhs.b_pos, rhs.e_pos, b_pos);
+            }
+            return *this;
+        }
 
         // -----------
         // operator -=
@@ -1039,6 +1110,43 @@ class Integer {
          */
         Integer& operator -= (const Integer& rhs) {
             // <your code>
+ 
+            if(digits.size() < (unsigned int)(max(distance(b_pos, e_pos), distance(rhs.b_pos, rhs.e_pos)) + 1))
+            {
+                expand_capacity(max(digits.size(), rhs.digits.size()) + 1);
+            }
+
+            if(negative == rhs.negative)
+            {
+                if(negative)
+                {
+                    if(*this >= rhs)
+                    {
+                        negative = false;
+                        e_pos = minus_digits(rhs.b_pos, rhs.e_pos, b_pos, e_pos, b_pos);
+                    }
+                    else
+                    {
+                        e_pos = minus_digits(b_pos, e_pos, rhs.b_pos, rhs.e_pos, b_pos);
+                    }
+                }
+                else
+                {
+                    if(*this >= rhs)
+                    {
+                        e_pos = minus_digits(b_pos, e_pos, rhs.b_pos, rhs.e_pos, b_pos);
+                    }
+                    else
+                    {
+                        negative = true;
+                        e_pos = minus_digits(rhs.b_pos, rhs.e_pos, b_pos, e_pos, b_pos);
+                    }
+                }
+            }
+            else
+            {
+                e_pos = plus_digits(b_pos, e_pos, rhs.b_pos, rhs.e_pos, b_pos);
+            }
             return *this;}
 
         // -----------
