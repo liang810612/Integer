@@ -233,6 +233,7 @@ OI minus_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
     // <your code>
     std::vector<int> number1;
     std::vector<int> number2;
+    std::vector<int> tempSum;
     int length1 = 0;
     int length2 = 0;
 
@@ -246,57 +247,103 @@ OI minus_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
         b2++;
         length2++;
     }
-    int len_diff = length1 - length2;
-    reverse(number1.begin(), number1.end());
-    reverse(number2.begin(), number2.end());
-    int max_length = std::max(length1, length2);
 
-    while(len_diff--){
-        number2.push_back(0);
-    }
-
-    int temp = 0;
-    bool borrow = false;
-    std::vector<int> result(max_length);
-
-    for(int i = 0; i < max_length; i++){
-        if (borrow == false){
-            if(number1[i] >= number2[i]){
-                temp =  number1[i] - number2[i];
-                borrow = false;
-                result[i] = temp;
-            }
-            else{
-                temp = 10 + number1[i] - number2[i];
-                borrow = true;
-                result[i] = temp;
-            }
-        }
-        else{// borrow == true
-            if(number1[i] > number2[i]){
-                temp = number1[i] - 1 - number2[i];
-                borrow = false;
-                result[i] = temp;
-            }
-            else{
-                temp = 10 + number1[i] -1 - number2[i];
-                borrow = true;
-                result[i] = temp;
-            }
-        }
-    }
-
-    while(( number1.size() != 1) && result[(max_length-1)] == 0){
-        result.pop_back();
-        max_length--;
-    }
-
-    int j = max_length - 1;
-    while( max_length--){
-        *x = result[j];
-        j--;
+    if(length1 == 1 && length2 == 1 && number1[0] == 0 && number2[0] == 0){
+        *x = 0;
         x++;
     }
+    else{
+        int sum1 = 0;
+        int unit1 =1;
+        for(int i = length1-1; i>=0 ; i--){
+            sum1 += number1[i] * unit1;
+            unit1 *= 10;
+        }
+
+        int sum2 = 0;
+        int unit2 =1;
+        
+        for(int i = length2-1; i>=0 ; i--){
+        sum2 += number2[i] *unit2;
+        unit2 *= 10;
+        }
+        
+        int sumTotal;
+        if (sum1 >= sum2){
+           sumTotal = sum1 - sum2; 
+        }
+        else{
+            sumTotal = sum2 - sum1;
+        }
+        
+       //cout << sumTotal <<endl;
+        if(sumTotal == 0){
+            tempSum.push_back(0);
+        }
+        else{
+            while(sumTotal != 0){
+                int answer = sumTotal % 10;
+                tempSum.push_back(answer);
+                sumTotal = sumTotal / 10;
+            }            
+        }
+
+        for(std::vector<int>::iterator it = tempSum.end()-1; it >= tempSum.begin(); it--){
+            *x = *it;
+            x++;            
+        }         
+    }    
+    // int len_diff = length1 - length2;
+    // reverse(number1.begin(), number1.end());
+    // reverse(number2.begin(), number2.end());
+    // int max_length = std::max(length1, length2);
+
+    // while(len_diff--){
+    //     number2.push_back(0);
+    // }
+
+    // int temp = 0;
+    // bool borrow = false;
+    // std::vector<int> result(max_length);
+
+    // for(int i = 0; i < max_length; i++){
+    //     if (borrow == false){
+    //         if(number1[i] >= number2[i]){
+    //             temp =  number1[i] - number2[i];
+    //             borrow = false;
+    //             result[i] = temp;
+    //         }
+    //         else{
+    //             temp = 10 + number1[i] - number2[i];
+    //             borrow = true;
+    //             result[i] = temp;
+    //         }
+    //     }
+    //     else{// borrow == true
+    //         if(number1[i] > number2[i]){
+    //             temp = number1[i] - 1 - number2[i];
+    //             borrow = false;
+    //             result[i] = temp;
+    //         }
+    //         else{
+    //             temp = 10 + number1[i] -1 - number2[i];
+    //             borrow = true;
+    //             result[i] = temp;
+    //         }
+    //     }
+    // }
+
+    // while(( number1.size() != 1) && result[(max_length-1)] == 0){
+    //     result.pop_back();
+    //     max_length--;
+    // }
+
+    // int j = max_length - 1;
+    // while( max_length--){
+    //     *x = result[j];
+    //     j--;
+    //     x++;
+    // }
     return x;
 }
 
