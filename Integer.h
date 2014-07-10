@@ -1044,7 +1044,7 @@ class Integer {
          */
         Integer& operator <<= (int n) {
             // <your code>
-            e_pos = shift_left_digits(b_pos,e_pos,n,b_pos)
+            e_pos = shift_left_digits(b_pos,e_pos,n,b_pos);
             return *this;}
 
         // ------------
@@ -1056,7 +1056,7 @@ class Integer {
          */
         Integer& operator >>= (int n) {
             // <your code>
-            e_pos = shift_right_digits(b_pos,e_pos,n,b_pos)
+            e_pos = shift_right_digits(b_pos,e_pos,n,b_pos);
             return *this;}
 
         // ---
@@ -1084,10 +1084,10 @@ class Integer {
          */
         Integer& pow (int e) {
             // <your code>
-   
+
+            return *this;
 
         }
 };
 
 #endif // Integer_h
-
