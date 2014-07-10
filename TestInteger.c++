@@ -201,12 +201,12 @@ TEST(Integer, minus_digits_3) {
     }
 
 TEST(Integer, minus_digits_4){
-        const int a[] = {1,0,0,0,0};
-        const int b[] = {5,0,0};
-        const int c[] = {9,5,0,0};
+        const int a[] = {9,9,9};
+        const int b[] = {9,9,9};
+        const int c[] = {0};
               int x[10];
-        const int* p = minus_digits(a, a + 5, b, b + 3, x);
-        ASSERT_EQ(4, p - x );
+        const int* p = minus_digits(a, a + 3, b, b + 3, x);
+        ASSERT_EQ(1, p - x );
         ASSERT_TRUE(std::equal(const_cast<const int*>(x), p, c));
 }
 
