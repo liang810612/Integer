@@ -236,14 +236,12 @@ OI minus_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
     }
 
     while(( number1.size() != 1) && result[(max_length-1)] == 0){
-        // cout<< "run this shit!"<< endl;
         result.pop_back();
         max_length--;
     }
 
     int j = max_length - 1;
     while( max_length--){
-        //cout << "hereeeeeeeeeeeeeeeeeee   "<< result[j]<<endl;  
         *x = result[j];
         j--;
         x++;
