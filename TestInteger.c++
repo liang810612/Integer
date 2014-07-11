@@ -228,6 +228,24 @@ TEST(Integer, minus_digits_5){
         ASSERT_TRUE(std::equal(const_cast<const int*>(x), p, c));
 }
 
+TEST(Integer, minus_digits_6666666666666666minus) {
+        const int a[] = {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+        const int b[] = {2};
+        const int c[] = {9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,8};
+              int x[50];
+        const int* p = minus_digits(a, a + 19, b, b + 1, x);
+
+    for(int i = 0; i < 18; i++)
+        cout <<"c[]"<< c[i]<<endl;
+    cout << "size of c "<< sizeof(c)/sizeof(*c)<< endl;
+    cout << "p "<< p<< endl;
+    cout << "x "<< x<< endl;
+    cout << "p - x" << p-x<<endl;
+
+        ASSERT_EQ(18, p - x );
+        ASSERT_TRUE(std::equal(const_cast<const int*>(x), p, c));
+    }
+
 // -----------------
 // multiplies_digits
 // -----------------
@@ -292,13 +310,12 @@ TEST(Integer, multiplies_digits_7777777777777777) {
     const int c[] = {8,0,7,7,9,8,5,3,3,7,6};
           int x[100];
     const int* p = multiplies_digits(a, a + 6, b, b + 6, x);
-    for(int i = 0; i < 11; i++)
-        cout <<"c[]"<< c[i]<<endl;
-
-    cout << "size of c "<< sizeof(c)/sizeof(*c)<< endl;
-    cout << "p "<< p<< endl;
-    cout << "x "<< x<< endl;
-    cout << "p - x" << p-x<<endl;
+    // for(int i = 0; i < 11; i++)
+    //     cout <<"c[]"<< c[i]<<endl;
+    // cout << "size of c "<< sizeof(c)/sizeof(*c)<< endl;
+    // cout << "p "<< p<< endl;
+    // cout << "x "<< x<< endl;
+    // cout << "p - x" << p-x<<endl;
     ASSERT_EQ(11, p - x);
     ASSERT_TRUE(std::equal(const_cast<const int*>(x), p, c));}   
 

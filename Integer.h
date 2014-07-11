@@ -226,12 +226,12 @@ OI minus_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
         unit2 *= 10;
         }
         
-        int sumTotal;
+        long long sumTotal;
         if (sum1 >= sum2){
-           sumTotal = sum1 - sum2; 
+           sumTotal = (long long)sum1 - (long long)sum2; 
         }
         else{
-            sumTotal = sum2 - sum1;
+            sumTotal =(long long)sum2 - (long long)sum1;
         }
        //cout << sumTotal <<endl;
         if(sumTotal == 0){
@@ -239,7 +239,7 @@ OI minus_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
         }
         else{
             while(sumTotal != 0){
-                int answer = sumTotal % 10;
+                long long answer = sumTotal % 10;
                 tempSum.push_back(answer);
                 sumTotal = sumTotal / 10;
             }            
@@ -305,9 +305,9 @@ OI multiplies_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
         unit2 *= 10;
         }
         
-        int sumTotal;
+        long long sumTotal;
   
-           sumTotal = sum1 * sum2; 
+        sumTotal = (long)sum1 * (long)sum2; 
 
        //cout << sumTotal <<endl;
         if(sumTotal == 0){
