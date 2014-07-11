@@ -285,48 +285,212 @@ OI multiplies_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
         b2++;
         counter2++;
     }
-    if((counter == 1 && number1[0]== 0) ||(counter2 == 1 && number2[0]== 0)){
-        *x = 0;
-        x++;
-    }
-    else{
-        int sum1 = 0;
-        int unit1 =1;
-        for(int i = counter-1; i>=0 ; i--){
-            sum1 += number1[i] * unit1;
-            unit1 *= 10;
+// Specia case if one of the array has only one element and it is zero or both are one
+    if((number1[0] == 0|| number2[0] == 0) && (counter == 1 || counter2 ==1)){
+         *x = 0;
+         x++;
+     }
+     else if ((number2[0] == 1 && number1[0] == 1) && (counter == 1 || counter2 ==1)){
+         *x = 1;
+         x++;
+     } 
+     //array 1 has only one element with value 1
+     else if ( number1[0] == 1 && counter == 1 ){
+         for(std::vector<int>::iterator it = number2.begin(); it != number2.end(); it++){
+             *x = *it;
+             x++;            
+         }
+     }
+     //array 2 has only one element with value 1
+     else if ((number2[0] == 1 && counter2 ==1)){
+         for(std::vector<int>::iterator it = number1.begin(); it != number1.end(); it++){
+             *x = *it;
+             x++;            
+         }
+     }                      
+     else{
+         if(counter2 < counter){
+             std::vector< vector<int> >vectorSum (counter2, vector<int>(counter+counter2-1, 0));
+         // store values of two arrays into vectorSum
+             int index2 = counter2-1; 
+             int index = counter-1;
+             int temp;
+             int temp3 = counter;
+             for(int i = 0; i < counter2; i++){
+                 temp = counter2 - i -1;
+                 for(int j = counter; j > 0; j--){
+                     vectorSum[i][temp3+ temp -1] = (number1[index] * number2[index2]);
+                     index--;
+                     temp--;
+                 }
+                 index2--;
+                 index = counter-1;
+             }
+             // calculate and store in digit form
+             int temp2 = counter2-1;
+             int carry = 0;
+             int sum;
+             for(int j = counter + temp2 ; j > 0; j--){ //longer elements array
+                 sum = 0;
+                 for(int i = 0; i < counter2 ; i++){  // shorter
+                     sum += vectorSum[i][j-1];
+                 }
+                 tempSum.push_back((sum + carry) % 10);
+                 carry = (sum+carry) /10;;      
+             }
+             int countX;
+             if(carry > 0){
+                countX = counter + temp2 ;    //longer elements array
+                 tempSum.push_back(carry);
+             }
+ 
+             for(int i = countX; i >= 0; i--){
+                 *x = tempSum[i];
+                 x++;
+             }
+         }
+         else if(counter2 > counter){ //counter 2 > counter
+             std::vector< vector<int> >vectorSum (counter, vector<int>(counter+counter2-1, 0));
+         // store values of two arrays into vectorSum
+             int index2 = counter2-1; //3
+             int index = counter-1;   //1
+             int temp;
+             int temp3 = counter2;     //4
+ 
+             for(int i = 0; i < counter; i++){
+                 temp = counter - i -1;       //1
+                 for(int j = counter2; j > 0; j--){
+                     vectorSum[i][temp3+ temp -1] = (number1[index] * number2[index2]);
+                     index2--;
+                     temp--;
+                 }
+                 index--;
+                 index2 = counter2-1;
+             }
+             // calculate and store in digit form
+             int temp2 = counter-1;
+             int carry = 0;
+             int sum;
+             for(int j = counter2 + temp2 ; j > 0; j--){
+                 sum = 0;
+                 for(int i = 0; i < counter ; i++){
+                     sum += vectorSum[i][j-1];
+                 }
+                 tempSum.push_back((sum + carry) % 10);
+                 carry = (sum+carry) /10;;     
+             }
+             int countX;
+             if(carry > 0){
+                countX = counter2 + temp2 ;
+                 tempSum.push_back(carry);
+             }
+             for(int i = countX; i >= 0; i--){
+                 *x = tempSum[i];
+                 x++;
+             }             
+         }
+         else{ 
+            std::vector< vector<int> >vectorSum (counter, vector<int>(counter2+counter2-1, 0));
+             // store values of two arrays into vectorSum
+             int index2 = counter2-1; 
+             int index = counter-1;
+             int temp;
+             int temp3 = counter2;
+             for(int i = 0; i < counter; i++){
+                 temp = counter - i -1;
+                 for(int j = counter2; j > 0; j--){
+                     vectorSum[i][temp3+ temp -1] = (number2[index2]*number1[index]);
+                     //cout << "vectorSum[i][temp3+ temp -1]: " << vectorSum[i][temp3+ temp -1] << endl;
+                     index--;
+                     temp--;
+                 }
+                 index2--;
+                 index = counter-1;
+             }
+             // calculate and store in digit form
+             int temp2 = counter-1;
+             int carry = 0;
+             int sum;
+             for(int j = counter + temp2 ; j > 0; j--){
+                 sum = 0;
+                 for(int i = 0; i < counter ; i++){
+                     sum += vectorSum[i][j-1];
+                 }
+                 
+                 //*tempSum = (sum + carry) % 10;
+                 tempSum.push_back((sum + carry) % 10);
+                 carry = (sum+carry) /10;;
+                 //tempSum++;       
+             }
+             int countX;
+             if(carry == 0){
+                countX = counter2 + temp2 ;
+                 //*tempSum = *tempSum % 10;
+                 //int carry2 = *tempSum / 10;
+                 //tempSum++;
+                 //*tempSum = carry2;
+             }
+             else{
+                 countX = counter2 + temp2 +1;
+                 tempSum.push_back(carry);
+             }
+ 
+             for(int i = countX-1; i >= 0; i--){
+                 //cout <<
+                 *x = tempSum[i];
+                 x++;
+             } 
         }
+    }    
+        
+      
+ 
+    // if((counter == 1 && number1[0]== 0) ||(counter2 == 1 && number2[0]== 0)){
+    //     *x = 0;
+    //     x++;
+    // }
+    // else{
+    //     int sum1 = 0;
+    //     int unit1 =1;
+    //     for(int i = counter-1; i>=0 ; i--){
+    //         sum1 += number1[i] * unit1;
+    //         unit1 *= 10;
+    //     }
 
-        int sum2 = 0;
-        int unit2 =1;
+    //     int sum2 = 0;
+    //     int unit2 =1;
         
-        for(int i = counter2-1; i>=0 ; i--){
-        sum2 += number2[i] *unit2;
-        unit2 *= 10;
-        }
+    //     for(int i = counter2-1; i>=0 ; i--){
+    //     sum2 += number2[i] *unit2;
+    //     unit2 *= 10;
+    //     }
         
-        long long sumTotal;
+    //     long long sumTotal;
   
-        sumTotal = (long)sum1 * (long)sum2; 
+    //     sumTotal = (long)sum1 * (long)sum2; 
 
-       //cout << sumTotal <<endl;
-        if(sumTotal == 0){
-            tempSum.push_back(0);
-        }
-        else{
-            while(sumTotal != 0){
-                int answer = sumTotal % 10;
-                tempSum.push_back(answer);
-                sumTotal = sumTotal / 10;
-            }            
-        }
+    //    //cout << sumTotal <<endl;
+    //     if(sumTotal == 0){
+    //         tempSum.push_back(0);
+    //     }
+    //     else{
+    //         while(sumTotal != 0){
+    //             int answer = sumTotal % 10;
+    //             tempSum.push_back(answer);
+    //             sumTotal = sumTotal / 10;
+    //         }            
+    //     }
 
-        for(std::vector<int>::iterator it = tempSum.end()-1; it >= tempSum.begin(); it--){
-            *x = *it;
-            x++;            
-        }         
-    } return x;
+    //     for(std::vector<int>::iterator it = tempSum.end()-1; it >= tempSum.begin(); it--){
+    //         *x = *it;
+    //         x++;            
+    //     }         
+    // } 
+
+
+    return x;
 }
+
 
 // --------------
 // divides_digits

@@ -319,6 +319,21 @@ TEST(Integer, multiplies_digits_7777777777777777) {
     ASSERT_EQ(11, p - x);
     ASSERT_TRUE(std::equal(const_cast<const int*>(x), p, c));}   
 
+TEST(Integer, multiplies_digits_9999999999999999999999) {
+    const int a[] = {9,9,9,9,9,9,9,9,9,9};
+    const int b[] = {9,9,9,9,9,9,9,9,9,9};
+    const int c[] = {9,9,9,9,9,9,9,9,9,8,0,0,0,0,0,0,0,0,0,1};
+          int x[100];
+    const int* p = multiplies_digits(a, a + 10, b, b + 10, x);
+    // for(int i = 0; i < 11; i++)
+    //     cout <<"c[]"<< c[i]<<endl;
+    // cout << "size of c "<< sizeof(c)/sizeof(*c)<< endl;
+    // cout << "p "<< p<< endl;
+    // cout << "x "<< x<< endl;
+    // cout << "p - x" << p-x<<endl;
+    ASSERT_EQ(20, p - x);
+    ASSERT_TRUE(std::equal(const_cast<const int*>(x), p, c));}       
+
 // --------------
 // divides_digits
 // --------------
