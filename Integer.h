@@ -38,11 +38,15 @@ using namespace std;
 template <typename II, typename OI>
 OI shift_left_digits (II b, II e, int n, OI x) {
     // <your code>
-    OI y = std::copy(b,e,x);
-    OI z = y;
-    std::advance(z,n);
-    std::fill(y, z, 0);
-    return z;}
+    // OI y = std::copy(b,e,x);
+    // OI z = y;
+    // std::advance(z,n);
+    // std::fill(y, z, 0);
+    // return z;
+
+        x = copy(b, e, x);
+    return fill_n(x, n, 0);
+}
 
 // ------------------
 // shift_right_digits
@@ -59,14 +63,17 @@ OI shift_left_digits (II b, II e, int n, OI x) {
  */
 template <typename II, typename OI>
 OI shift_right_digits (II b, II e, int n, OI x) {
-    // <your code>
-    II temp = e - n;
-    while(b != temp){
-        *x = *b;
-        b++;
+    int l = e - b;
+    if(n > l){
+        *x = 0;
         x++;
+        return x;
     }
-    return x;}
+    else
+    {
+        return copy_n(b, l - n, x);
+    }
+}
 
 // -----------
 // plus_digits
@@ -86,11 +93,12 @@ OI shift_right_digits (II b, II e, int n, OI x) {
 template <typename II1, typename II2, typename OI>
 OI plus_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
    // <your code>
+     
     std::vector<int> number1;
     std::vector<int> number2;
     int length1 = 0;
     int length2 = 0;
-    std::vector<int> tempSum;
+
 
     while(b1 != e1){
         number1.push_back(*b1);
@@ -102,114 +110,65 @@ OI plus_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
         b2++;
         length2++;
     }
-    if(length1 == 1 && length2 == 1 && number1[0] == 0 && number2[0] == 0){
-        *x = 0;
+
+    std::reverse(number1.begin(), number1.end());
+    std::reverse(number2.begin(), number2.end());
+    int max_length = std::max(length1, length2);
+
+    std::vector<int> result(max_length);
+    int carry = 0;
+    int temp = 0;
+    for (int i = 0; i < max_length; i++){
+        // number1 and number2has the same length
+        if (i <= length1 && i <= length2){
+            temp = number1[i] + number2[i] + carry;
+            if (temp > 9){
+                carry = 1;
+                temp -= 10;
+                result[i] = temp;
+            }
+            else{
+                result[i] = temp;
+                carry = 0;
+            }
+        }
+        //number1 is longer
+        else if(i < length1 && i >= length2){
+            temp = number1[i] + carry;
+            if(temp > 9){
+                carry = 1;
+                temp -= 10;
+                result[i] = temp;
+            }
+            else{
+                result[i] = temp;
+                carry = 0;
+            }
+        }
+        //number2 is longer
+        else{
+            temp = number2[i] + carry;
+            if(temp > 9){
+                carry = 1;
+                temp -= 10;
+                result[i] = temp;
+            }
+            else{
+                carry = 0;
+                result[i] = temp;
+            }
+        }
+    }
+    if (carry == 1){
+        result.push_back(1);
+        max_length ++;
+    }
+    int j = max_length - 1;
+    while(max_length--){
+        *x = result[j];
+        j--;
         x++;
     }
-    else{
-        int sum1 = 0;
-        int unit1 =1;
-        for(int i = length1-1; i>=0 ; i--){
-            sum1 += number1[i] *unit1;
-            unit1 *= 10;
-        }
-        int sum2 = 0;
-        int unit2 =1;
-        
-        for(int i = length2-1; i>=0 ; i--){
-        sum2 += number2[i] *unit2;
-        unit2 *= 10;
-        }
-        
-        int sumTotal = sum1 + sum2;
-        //cout << sumTotal <<endl;
-        
-        while(sumTotal != 0){
-            int answer = sumTotal % 10;
-            tempSum.push_back(answer);
-            sumTotal = sumTotal / 10;
-        }
-        for(std::vector<int>::iterator it = tempSum.end()-1; it >= tempSum.begin(); it--){
-            *x = *it;
-            x++;            
-        }         
-    }
-     
-    // std::vector<int> number1;
-    // std::vector<int> number2;
-    // int length1 = 0;
-    // int length2 = 0;
-
-
-    // while(b1 != e1){
-    //     number1.push_back(*b1);
-    //     b1++;
-    //     length1++;
-    // }
-    // while(b2 != e2){
-    //     number2.push_back(*b2);
-    //     b2++;
-    //     length2++;
-    // }
-
-    // std::reverse(number1.begin(), number1.end());
-    // std::reverse(number2.begin(), number2.end());
-    // int max_length = std::max(length1, length2);
-
-    // std::vector<int> result(max_length);
-    // int carry = 0;
-    // int temp = 0;
-    // for (int i = 0; i < max_length; i++){
-    //     // number1 and number2has the same length
-    //     if (i <= length1 && i <= length2){
-    //         temp = number1[i] + number2[i] + carry;
-    //         if (temp > 9){
-    //             carry = 1;
-    //             temp -= 10;
-    //             result[i] = temp;
-    //         }
-    //         else{
-    //             result[i] = temp;
-    //             carry = 0;
-    //         }
-    //     }
-    //     //number1 is longer
-    //     else if(i < length1 && i >= length2){
-    //         temp = number1[i] + carry;
-    //         if(temp > 9){
-    //             carry = 1;
-    //             temp -= 10;
-    //             result[i] = temp;
-    //         }
-    //         else{
-    //             result[i] = temp;
-    //             carry = 0;
-    //         }
-    //     }
-    //     //number2 is longer
-    //     else{
-    //         temp = number2[i] + carry;
-    //         if(temp > 9){
-    //             carry = 1;
-    //             temp -= 10;
-    //             result[i] = temp;
-    //         }
-    //         else{
-    //             carry = 0;
-    //             result[i] = temp;
-    //         }
-    //     }
-    // }
-    // if (carry == 1){
-    //     result.push_back(1);
-    //     max_length ++;
-    // }
-    // int j = max_length - 1;
-    // while(max_length--){
-    //     *x = result[j];
-    //     j--;
-    //     x++;
-    // }
     return x;
 }
 
@@ -230,7 +189,6 @@ OI plus_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
  */
 template <typename II1, typename II2, typename OI>
 OI minus_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
-    // <your code>
     std::vector<int> number1;
     std::vector<int> number2;
     std::vector<int> tempSum;
@@ -275,7 +233,6 @@ OI minus_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
         else{
             sumTotal = sum2 - sum1;
         }
-        
        //cout << sumTotal <<endl;
         if(sumTotal == 0){
             tempSum.push_back(0);
@@ -287,63 +244,11 @@ OI minus_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
                 sumTotal = sumTotal / 10;
             }            
         }
-
         for(std::vector<int>::iterator it = tempSum.end()-1; it >= tempSum.begin(); it--){
             *x = *it;
             x++;            
         }         
     }    
-    // int len_diff = length1 - length2;
-    // reverse(number1.begin(), number1.end());
-    // reverse(number2.begin(), number2.end());
-    // int max_length = std::max(length1, length2);
-
-    // while(len_diff--){
-    //     number2.push_back(0);
-    // }
-
-    // int temp = 0;
-    // bool borrow = false;
-    // std::vector<int> result(max_length);
-
-    // for(int i = 0; i < max_length; i++){
-    //     if (borrow == false){
-    //         if(number1[i] >= number2[i]){
-    //             temp =  number1[i] - number2[i];
-    //             borrow = false;
-    //             result[i] = temp;
-    //         }
-    //         else{
-    //             temp = 10 + number1[i] - number2[i];
-    //             borrow = true;
-    //             result[i] = temp;
-    //         }
-    //     }
-    //     else{// borrow == true
-    //         if(number1[i] > number2[i]){
-    //             temp = number1[i] - 1 - number2[i];
-    //             borrow = false;
-    //             result[i] = temp;
-    //         }
-    //         else{
-    //             temp = 10 + number1[i] -1 - number2[i];
-    //             borrow = true;
-    //             result[i] = temp;
-    //         }
-    //     }
-    // }
-
-    // while(( number1.size() != 1) && result[(max_length-1)] == 0){
-    //     result.pop_back();
-    //     max_length--;
-    // }
-
-    // int j = max_length - 1;
-    // while( max_length--){
-    //     *x = result[j];
-    //     j--;
-    //     x++;
-    // }
     return x;
 }
 
@@ -380,153 +285,47 @@ OI multiplies_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
         b2++;
         counter2++;
     }
-
-    // Specia case if one of the array has only one element and it is zero or both are one
-    if((number1[0] == 0|| number2[0] == 0) && (counter == 1 || counter2 ==1)){
+    if((counter == 1 && number1[0]== 0) ||(counter2 == 1 && number2[0]== 0)){
         *x = 0;
         x++;
     }
-    else if ((number2[0] == 1 && number1[0] == 1) && (counter == 1 || counter2 ==1)){
-        *x = 1;
-        x++;
-    } 
-    //array 1 has only one element with value 1
-    else if ( number1[0] == 1 && counter == 1 ){
-        for(std::vector<int>::iterator it = number2.begin(); it != number2.end(); it++){
-            *x = *it;
-            x++;            
-        }
-    }
-    //array 2 has only one element with value 1
-    else if ((number2[0] == 1 && counter2 ==1)){
-        for(std::vector<int>::iterator it = number1.begin(); it != number1.end(); it++){
-            *x = *it;
-            x++;            
-        }
-    }                      
     else{
-        if(counter2 < counter){
-            std::vector< vector<int> >vectorSum (counter2, vector<int>(counter+counter2-1, 0));
-        // store values of two arrays into vectorSum
-            int index2 = counter2-1; 
-            int index = counter-1;
-            int temp;
-            int temp3 = counter;
-            for(int i = 0; i < counter2; i++){
-                temp = counter2 - i -1;
-                for(int j = counter; j > 0; j--){
-                    vectorSum[i][temp3+ temp -1] = (number1[index] * number2[index2]);
-                    index--;
-                    temp--;
-                }
-                index2--;
-                index = counter-1;
-            }
-            // calculate and store in digit form
-            int temp2 = counter2-1;
-            int carry = 0;
-            int sum;
-            for(int j = counter + temp2 ; j > 0; j--){ //longer elements array
-                sum = 0;
-                for(int i = 0; i < counter2 ; i++){  // shorter
-                    sum += vectorSum[i][j-1];
-                }
-                tempSum.push_back((sum + carry) % 10);
-                carry = (sum+carry) /10;;    
-            }
-            int countX;
-            if(carry > 0){
-               countX = counter + temp2 ;    //longer elements array
-                tempSum.push_back(carry);
-            }
-            for(int i = countX; i >= 0; i--){
-                *x = tempSum[i];
-                x++;
-            }
+        int sum1 = 0;
+        int unit1 =1;
+        for(int i = counter-1; i>=0 ; i--){
+            sum1 += number1[i] * unit1;
+            unit1 *= 10;
         }
-        else if(counter2 > counter){ //counter 2 > counter
-            std::vector< vector<int> >vectorSum (counter, vector<int>(counter+counter2-1, 0));
-        // store values of two arrays into vectorSum
-            int index2 = counter2-1; 
-            int index = counter-1;   
-            int temp;
-            int temp3 = counter2;     
 
-            for(int i = 0; i < counter; i++){
-                temp = counter - i -1;       
-                for(int j = counter2; j > 0; j--){
-                    vectorSum[i][temp3+ temp -1] = (number1[index] * number2[index2]);
-                    index2--;
-                    temp--;
-                }
-                index--;
-                index2 = counter2-1;
-            }
-            // calculate and store in digit form
-            int temp2 = counter-1;
-            int carry = 0;
-            int sum;
-            for(int j = counter2 + temp2 ; j > 0; j--){
-                sum = 0;
-                for(int i = 0; i < counter ; i++){
-                    sum += vectorSum[i][j-1];
-                }
-                tempSum.push_back((sum + carry) % 10);
-                carry = (sum+carry) /10;;   
-            }
-            int countX;
-            if(carry > 0){
-               countX = counter2 + temp2 ;
-                tempSum.push_back(carry);
-            }
-            for(int i = countX; i >= 0; i--){
-                *x = tempSum[i];
-                x++;
-            }             
+        int sum2 = 0;
+        int unit2 =1;
+        
+        for(int i = counter2-1; i>=0 ; i--){
+        sum2 += number2[i] *unit2;
+        unit2 *= 10;
         }
-        else{ // same size in both array
-            std::vector< vector<int> >vectorSum (counter, vector<int>(counter2+counter2-1, 0));
-            // store values of two arrays into vectorSum
-            int index2 = counter2-1; 
-            int index = counter-1;
-            int temp;
-            int temp3 = counter2;
-            for(int i = 0; i < counter; i++){
-                temp = counter - i -1;
-                for(int j = counter2; j > 0; j--){
-                    vectorSum[i][temp3+ temp -1] = (number2[index2]*number1[index]);
-                    index--;
-                    temp--;
-                }
-                index2--;
-                index = counter-1;
-            }
-            // calculate and store in digit form
-            int temp2 = counter-1;
-            int carry = 0;
-            int sum;
-            for(int j = counter + temp2 ; j > 0; j--){
-                sum = 0;
-                for(int i = 0; i < counter ; i++){
-                    sum += vectorSum[i][j-1];
-                }
-                //*tempSum = (sum + carry) % 10;
-                tempSum.push_back((sum + carry) % 10);
-                carry = (sum+carry) /10;;
-                //tempSum++;       
-            }
-            int countX;
-            if(carry > 0){
-               countX = counter2 + temp2 ;
-                tempSum.push_back(carry);
-            }
-            for(int i = countX; i >= 0; i--){
-                *x = tempSum[i];
-                x++;
-            } 
-        }     
-    }   
-return x;
+        
+        int sumTotal;
+  
+           sumTotal = sum1 * sum2; 
+
+       //cout << sumTotal <<endl;
+        if(sumTotal == 0){
+            tempSum.push_back(0);
+        }
+        else{
+            while(sumTotal != 0){
+                int answer = sumTotal % 10;
+                tempSum.push_back(answer);
+                sumTotal = sumTotal / 10;
+            }            
+        }
+
+        for(std::vector<int>::iterator it = tempSum.end()-1; it >= tempSum.begin(); it--){
+            *x = *it;
+            x++;            
+        }         
+    } return x;
 }
 
 // --------------
@@ -633,7 +432,8 @@ OI divides_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
         }        
     }
 
-return x;}
+    return x;
+}
 
 
 
@@ -652,11 +452,11 @@ class Integer {
      * <your documentation>
      */
     friend bool operator == (const Integer& lhs, const Integer& rhs) {
-        // <your code>
+        //<your code>
         if(lhs.negative != rhs.negative)
             return false;
 
-        int length_l = lhs.e_pos - rhs.b_pos;
+        int length_l = lhs.e_pos - lhs.b_pos;
         int length_r = rhs.e_pos - rhs.b_pos;
         if(length_r != length_l)
             return false;
@@ -665,8 +465,7 @@ class Integer {
         if (!isEqual)
             return  false;
 
-        return true;
-
+         return true;
 
 
     }
@@ -855,14 +654,9 @@ class Integer {
         // <your code>
         if(rhs.negative)
             lhs << '-';
-        copy(rhs.b_pos, rhs.e_pos, ostream_iterator<int>(lhs));
 
-        // while(rhs.b_pos != rhs.e_pos){
-        //     *lhs = *rhs.b_pos;
-        //     lhs++;
-        //     rhs.b_pos++:
-        // }
-
+        for (int i = 0; i < (int)rhs.digits.size(); i++)
+            lhs << rhs.digits[i];
         return lhs;
     }
 
@@ -899,7 +693,7 @@ class Integer {
         typename C ::iterator b_pos;
         typename C ::iterator e_pos;
         bool negative;
-        int size;
+        //int size;
 
     private:
         // -----
@@ -907,7 +701,7 @@ class Integer {
         // -----
 
         bool valid () const { // class invariant
-            // <your code>
+            //<your code>
             if(digits.size() < 1)
                 return false;
             
@@ -924,6 +718,16 @@ class Integer {
             return true;
         }
 
+        void expand_capacity(int increase_size){
+            int current_size = distance(b_pos, e_pos);
+
+            digits.resize((digits.size() + increase_size) * 3);
+
+            //reset the iterator as rellocation invalidates them
+            b_pos = digits.begin();
+            e_pos = next(b_pos, current_size);
+        }
+
     public:
         // ------------
         // constructors
@@ -938,11 +742,11 @@ class Integer {
             b_pos = digits.begin();
             e_pos = digits.end();
             negative = false;
-            size = 1;
+            //size = 1;
         }
         Integer (int value) {
             // <your code>
-            size = 0;
+            //size = 0;
             if(value < 0){
                 negative = true;
                 value = -value;
@@ -951,21 +755,17 @@ class Integer {
                 negative = false;
             }
 
+
             if(value == 0){
                 digits.push_back(0);
-                size ++;
-                digits.resize(size);
                 negative = false;
             }
             else{
                 while(value != 0){
                     digits.push_back(value % 10);
                     value = value / 10;
-                    size ++;
-                    digits.resize(size);
                 }
             }
-            
             reverse(digits.begin(), digits.end());
             b_pos = digits.begin();
             e_pos = digits.end();
@@ -982,16 +782,33 @@ class Integer {
             negative = false;
             if(value[0] == '-'){
                 negative = true;
-                i++;
+                ++i;;
             }
             //int c = 0;
             int t = value.length();
-            while(t--){
-                digits.push_back(value[i] - '0');
-                ++i;
+            if (t == 1){
+                while(t--){
+                    digits.push_back(value[i] - 48);
+                    ++i;
+                }
+                if (!valid())
+                    throw std::invalid_argument("Integer::Integer(const string&)");
             }
-            if (!valid())
-                throw std::invalid_argument("Integer()");
+
+            else{
+                --t;
+                while(t--){
+                    digits.push_back(value[i] - 48);
+                    ++i;
+                }
+                if (!valid())
+                    throw std::invalid_argument("Integer::Integer(const string&)");
+
+            }
+            b_pos = digits.begin();
+            e_pos = digits.end();
+
+
         }
 
         // Default copy, destructor, and copy assignment.
@@ -1009,7 +826,7 @@ class Integer {
         Integer operator - () const {
             // <your code>
             Integer res = *this;
-            if(res != 0)
+            if(*res.b_pos != 0)
                 res.negative = !res.negative;
             return res;
         }
@@ -1061,7 +878,7 @@ class Integer {
          */
         Integer& operator += (const Integer& rhs) {
             // <your code>
-            if(digits.size() < (unsigned int)(max(distance(b_pos, e_pos), distance(rhs.b_pos, rhs.e_pos)) + 1))
+              if(digits.size() < (unsigned int)(max(distance(b_pos, e_pos), distance(rhs.b_pos, rhs.e_pos)) + 1))
             {   
                 expand_capacity(max(distance(b_pos, e_pos), distance(rhs.b_pos, rhs.e_pos)) + 1);
             }
@@ -1158,6 +975,29 @@ class Integer {
          */
         Integer& operator *= (const Integer& rhs) {
             // <your code>
+                   //special case: result is 0
+            if((*rhs.b_pos == 0) || (*b_pos == 0))
+            {
+                negative = false;
+                *b_pos = 0;
+                e_pos = next(b_pos);
+                return *this;
+            }
+
+            if(digits.size() < (unsigned int)(distance(b_pos, e_pos) + distance(rhs.b_pos, rhs.e_pos)))
+            {   
+                expand_capacity(digits.size() + rhs.digits.size());
+            }
+
+            if(negative == rhs.negative)
+            {
+                negative = false;
+            }
+            else
+            {
+                negative = true;
+            }
+            e_pos = multiplies_digits(b_pos, e_pos, rhs.b_pos, rhs.e_pos, b_pos);
             return *this;}
 
         // -----------
@@ -1170,6 +1010,31 @@ class Integer {
          */
         Integer& operator /= (const Integer& rhs) {
             // <your code>
+               if(*rhs.b_pos == 0)
+            {
+                throw invalid_argument("Integer::operator /= (const Integer&)");
+            }
+
+            //special case: result is 0
+            if(*b_pos == 0)
+            {
+                negative = false;
+                *b_pos = 0;
+                e_pos = next(b_pos);
+                return *this;
+            }
+
+            if(negative == rhs.negative)
+            {
+                negative = false;
+            }
+            else
+            {
+                negative = true;
+            }
+
+            e_pos = divides_digits(b_pos, e_pos, rhs.b_pos, rhs.e_pos, b_pos);
+
             return *this;}
 
         // -----------
@@ -1183,6 +1048,11 @@ class Integer {
         Integer& operator %= (const Integer& rhs) {
             // <your code>
 
+            if(*rhs.b_pos <= 0)
+            {
+                throw invalid_argument("Integer::operator %= (const Integer&)");
+            }
+            *this = *this - ((*this / rhs) * rhs);
             return *this;}
 
         // ------------
@@ -1194,6 +1064,10 @@ class Integer {
          */
         Integer& operator <<= (int n) {
             // <your code>
+             if(n < 0)
+            {
+                throw invalid_argument("Integer::operator <<= (int)");
+            }
             e_pos = shift_left_digits(b_pos,e_pos,n,b_pos);
             return *this;}
 
@@ -1206,6 +1080,10 @@ class Integer {
          */
         Integer& operator >>= (int n) {
             // <your code>
+              if(n < 0)
+            {
+                throw invalid_argument("Integer::operator >>= (int)");
+            }
             e_pos = shift_right_digits(b_pos,e_pos,n,b_pos);
             return *this;}
 
@@ -1232,12 +1110,20 @@ class Integer {
          * <your documentation>
          * @throws invalid_argument if ((this == 0) && (e == 0)) or (e < 0)
          */
-        Integer& pow (int e) {
+    Integer& pow (int e) {
             // <your code>
+            // if((*b_pos == 0) || e <= 0)
+            // {
+            //     throw invalid_argument("Integer::pow(int)");
+            // }
+            // Integer temp = *this;
 
+            // while(e-- != 1)
+            // {  
+            //     *this *= temp;
+            // }
             return *this;
-
-        }
+    }
 };
 
 #endif // Integer_h
