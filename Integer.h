@@ -106,7 +106,6 @@ OI plus_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
     int carry = 0;
     int temp = 0;
     for (int i = 0; i < max_length; i++){
-        // number1 and number2has the same length
         if (i <= length1 && i <= length2){
             temp = number1[i] + number2[i] + carry;
             if (temp > 9){
@@ -119,7 +118,6 @@ OI plus_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
                 carry = 0;
             }
         }
-        //number1 is longer
         else if(i < length1 && i >= length2){
             temp = number1[i] + carry;
             if(temp > 9){
@@ -132,7 +130,6 @@ OI plus_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
                 carry = 0;
             }
         }
-        //number2 is longer
         else{
             temp = number2[i] + carry;
             if(temp > 9){
@@ -236,7 +233,7 @@ OI minus_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
             ++x;
             --e1;
         }
-    }else{// number2 is larger>>>>>>>>>>>>>>>>>>>>>>>>>>>>ignore wont be run
+    }else{
         carry = 0;
         e1--;
         e2--;
@@ -259,7 +256,6 @@ OI minus_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
             if(carry > 0){
                 temp = *e2 -carry;
                 carry = 0;
-                //cout<<"temp: "<<temp<<endl;
                 if(temp < 0){
                     carry = 1;
                     temp+=10;
@@ -276,20 +272,7 @@ OI minus_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
     }
     for(OI i = l; i < x; i++)
         out.push_back(*i);
- 
-    // if(out[0] > 0){
-    //     for(int i = out.size()-1; i >= 0; i--){
-    //         if(out[i] == 0)
-    //             out.pop_back();
-    //     }        
-    // }
-    // else{
-    //     for(int i = out.size()-1; i > 0; i--){
-    //         if(out[i] == 0)
-    //             out.pop_back();  
-    //     }      
-    // }
-    reverse(out.begin(), out.end());// 0 0 0 1
+    reverse(out.begin(), out.end());
     for(unsigned int i = 0; i < out.size(); i++){
         *l = out[i];
         l++;
@@ -317,7 +300,6 @@ OI minus_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
 template <typename II1, typename II2, typename OI>
 OI multiplies_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
     // <your code>
-
     if(b1+1 == e1 && *b1 == 0){
         *x = 0;
         x++;
@@ -362,7 +344,6 @@ OI multiplies_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
         }
         rounds2 ++;
         e2 --;
-        //cout << endl;
     }
     vector<int> out;
     //cout<< "rounds1  " << rounds1 << endl;
@@ -512,11 +493,11 @@ class Integer {
     // operator ==
     // -----------
 
-        /**
-        * @param lhs the left hand operand
-        * @param rhs the right hand operand
-        * @return true if lhs is equal to rhs, false otherwise
-         */
+    /**
+    * @param lhs the left hand operand
+    * @param rhs the right hand operand
+    * @return true if lhs is equal to rhs, false otherwise
+    */
     friend bool operator == (const Integer& lhs, const Integer& rhs) {
         //<your code>
         //cout<< "=="<< endl;
@@ -641,11 +622,11 @@ class Integer {
     // operator +
     // ----------
 
-        /**
-         * @param lhs the left hand operand
-         * @param rhs the right hand operand
-         * @return the sum of lhs and rhs
-         */
+    /**
+     * @param lhs the left hand operand
+     * @param rhs the right hand operand
+     * @return the sum of lhs and rhs
+     */
     friend Integer operator + (Integer lhs, const Integer& rhs) {
         return lhs += rhs;}
 
@@ -653,11 +634,11 @@ class Integer {
     // operator -
     // ----------
 
-        /**
-         * @param lhs the left hand operand
-         * @param rhs the right hand operand
-         * @return the difference of lhs and rhs
-         */
+    /**
+     * @param lhs the left hand operand
+     * @param rhs the right hand operand
+     * @return the difference of lhs and rhs
+     */
     friend Integer operator - (Integer lhs, const Integer& rhs) {
         return lhs -= rhs;}
 
@@ -665,11 +646,11 @@ class Integer {
     // operator *
     // ----------
 
-        /**
-         * @param lhs the left hand operand
-         * @param rhs the right hand operand
-         * @return the product of lhs and rhs
-         */
+    /**
+     * @param lhs the left hand operand
+     * @param rhs the right hand operand
+     * @return the product of lhs and rhs
+     */
     friend Integer operator * (Integer lhs, const Integer& rhs) {
         return lhs *= rhs;}
 
@@ -677,12 +658,12 @@ class Integer {
     // operator /
     // ----------
 
-        /**
-         * @param lhs the left hand operand
-         * @param rhs the right hand operand
-         * @return the quotient of lhs and rhs
-         * @throws invalid_argument if (rhs == 0)
-         */
+    /**
+     * @param lhs the left hand operand
+     * @param rhs the right hand operand
+     * @return the quotient of lhs and rhs
+     * @throws invalid_argument if (rhs == 0)
+     */
     friend Integer operator / (Integer lhs, const Integer& rhs) {
         return lhs /= rhs;}
 
@@ -691,12 +672,12 @@ class Integer {
     // ----------
 
 
-        /**
-         * @param lhs the left hand operand
-         * @param rhs the right hand operand
-         * @return the remainder of lhs / rhs
-         * @throws invalid_argument if (rhs <= 0)
-         */
+    /**
+     * @param lhs the left hand operand
+     * @param rhs the right hand operand
+     * @return the remainder of lhs / rhs
+     * @throws invalid_argument if (rhs <= 0)
+     */
     friend Integer operator % (Integer lhs, const Integer& rhs) {
         return lhs %= rhs;}
 
@@ -704,11 +685,11 @@ class Integer {
     // operator <<
     // -----------
 
-        /**
-         * @param lhs the left hand operand
-         * @param rhs the right hand operand
-         * @return lhs left-shifted by rhs digits
-         */
+    /**
+     * @param lhs the left hand operand
+     * @param rhs the right hand operand
+     * @return lhs left-shifted by rhs digits
+     */
     friend Integer operator << (Integer lhs, int rhs) {
         return lhs <<= rhs;}
 
@@ -717,11 +698,11 @@ class Integer {
     // -----------
 
 
-        /**
-         * @param lhs the left hand operand
-         * @param rhs the right hand operand
-         * @return lhs right-shifted by rhs digits
-         */
+    /**
+     * @param lhs the left hand operand
+     * @param rhs the right hand operand
+     * @return lhs right-shifted by rhs digits
+     */
     friend Integer operator >> (Integer lhs, int rhs) {
         return lhs >>= rhs;}
 
@@ -729,11 +710,11 @@ class Integer {
     // operator <<
     // -----------
 
-        /**
-         * @param lhs the output stream to use
-         * @param rhs the Integer to output
-         * @return lhs
-         */
+    /**
+     * @param lhs the output stream to use
+     * @param rhs the Integer to output
+     * @return lhs
+     */
     friend std::ostream& operator << (std::ostream& lhs, const Integer& rhs) {
         // <your code>
         if(rhs.negative)
@@ -747,11 +728,11 @@ class Integer {
     // abs
     // ---
 
-        /**
-         * absolute value
-         * @param x an Integer
-         * @return the absolute value of x (without modifying x)
-         */
+    /**
+     * absolute value
+     * @param x an Integer
+     * @return the absolute value of x (without modifying x)
+     */
     friend Integer abs (Integer x) {
         return x.abs();}
 
@@ -759,12 +740,12 @@ class Integer {
     // pow
     // ---
 
-        /**
-         * power
-         * @param x the Integer
-         * @param e the power to exponentiate to
-         * @return x^e
-         */
+    /**
+     * power
+     * @param x the Integer
+     * @param e the power to exponentiate to
+     * @return x^e
+     */
     friend Integer pow (Integer x, int e) {
         return x.pow(e);}
 
@@ -954,7 +935,7 @@ class Integer {
          * += operation for Integer
          */
         Integer& operator += (const Integer& rhs) {
-            cout<<"+="<<endl;
+            //cout<<"+="<<endl;
 
             // <your code>
             bool flag;
@@ -1179,12 +1160,12 @@ class Integer {
         // pow
         // ---
 
-        /**
-         * power operation
-         * @e an int as the number of power the Integer get raised to
-         * @throw invalid_argument if (this == 0) && (e == 0)
-         * @throw invalid_argument if (e < 0)
-         */
+    /**
+     * power operation
+     * @e an int as the number of power the Integer get raised to
+     * @throw invalid_argument if (this == 0) && (e == 0)
+     * @throw invalid_argument if (e < 0)
+     */
     Integer& pow (int e) {
             // <your code>
             if(*this == 0) throw::invalid_argument("Integer::Integer()");
@@ -1197,11 +1178,12 @@ class Integer {
             Integer res = 1;
             if(e > 1)
                 res = d.pow(e/2); 
-            if(!(e & 1) )      
-                res *= res;
-            else{      
+            if(e & 1){
                 res *= res;
                 res *= *this;
+            }      
+            else{      
+                res *= res;
             }
             *this = res;
             return *this;
