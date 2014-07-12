@@ -512,9 +512,11 @@ class Integer {
     // operator ==
     // -----------
 
-    /**
-     * <your documentation>
-     */
+        /**
+        * @param lhs the left hand operand
+        * @param rhs the right hand operand
+        * @return true if lhs is equal to rhs, false otherwise
+         */
     friend bool operator == (const Integer& lhs, const Integer& rhs) {
         //<your code>
         //cout<< "=="<< endl;
@@ -535,9 +537,10 @@ class Integer {
     // -----------
     // operator !=
     // ----------- 
-
     /**
-     * <your documentation>
+     * @param lhs the left hand operand
+     * @param rhs the right hand operand
+     * @return true if lhs is not equal to rhs, false otherwise
      */
     friend bool operator != (const Integer& lhs, const Integer& rhs) {
         return !(lhs == rhs);}
@@ -547,7 +550,9 @@ class Integer {
     // ----------
 
     /**
-     * <your documentation>
+     * @param lhs the left hand operand
+     * @param rhs the right hand operand
+     * @return true if lhs is less than rhs, false otherwise
      */
     friend bool operator < (const Integer& lhs, const Integer& rhs) {
         int length_l = lhs.end - rhs.begin;
@@ -601,7 +606,9 @@ class Integer {
     // -----------
 
     /**
-     * <your documentation>
+     * @param lhs the left hand operand
+     * @param rhs the right hand operand
+     * @return true if lhs is less than or equal to rhs, false otherwise
      */
     friend bool operator <= (const Integer& lhs, const Integer& rhs) {
         return !(rhs < lhs);}
@@ -611,7 +618,9 @@ class Integer {
     // ----------
 
     /**
-     * <your documentation>
+     * @param lhs the left hand operand
+     * @param rhs the right hand operand
+     * @return true if lhs is g rhs, false otherwise
      */
     friend bool operator > (const Integer& lhs, const Integer& rhs) {
         return (rhs < lhs);}
@@ -621,7 +630,9 @@ class Integer {
     // -----------
 
     /**
-     * <your documentation>
+     * @param lhs the left hand operand
+     * @param rhs the right hand operand
+     * @return true if lhs is greater than or equal to rhs, false otherwise
      */
     friend bool operator >= (const Integer& lhs, const Integer& rhs) {
         return !(lhs < rhs);}
@@ -630,9 +641,11 @@ class Integer {
     // operator +
     // ----------
 
-    /**
-     * <your documentation>
-     */
+        /**
+         * @param lhs the left hand operand
+         * @param rhs the right hand operand
+         * @return the sum of lhs and rhs
+         */
     friend Integer operator + (Integer lhs, const Integer& rhs) {
         return lhs += rhs;}
 
@@ -640,9 +653,11 @@ class Integer {
     // operator -
     // ----------
 
-    /**
-     * <your documentation>
-     */
+        /**
+         * @param lhs the left hand operand
+         * @param rhs the right hand operand
+         * @return the difference of lhs and rhs
+         */
     friend Integer operator - (Integer lhs, const Integer& rhs) {
         return lhs -= rhs;}
 
@@ -650,9 +665,11 @@ class Integer {
     // operator *
     // ----------
 
-    /**
-     * <your documentation>
-     */
+        /**
+         * @param lhs the left hand operand
+         * @param rhs the right hand operand
+         * @return the product of lhs and rhs
+         */
     friend Integer operator * (Integer lhs, const Integer& rhs) {
         return lhs *= rhs;}
 
@@ -660,10 +677,12 @@ class Integer {
     // operator /
     // ----------
 
-    /**
-     * <your documentation>
-     * @throws invalid_argument if (rhs == 0)
-     */
+        /**
+         * @param lhs the left hand operand
+         * @param rhs the right hand operand
+         * @return the quotient of lhs and rhs
+         * @throws invalid_argument if (rhs == 0)
+         */
     friend Integer operator / (Integer lhs, const Integer& rhs) {
         return lhs /= rhs;}
 
@@ -671,10 +690,13 @@ class Integer {
     // operator %
     // ----------
 
-    /**
-     * <your documentation>
-     * @throws invalid_argument if (rhs <= 0)
-     */
+
+        /**
+         * @param lhs the left hand operand
+         * @param rhs the right hand operand
+         * @return the remainder of lhs / rhs
+         * @throws invalid_argument if (rhs <= 0)
+         */
     friend Integer operator % (Integer lhs, const Integer& rhs) {
         return lhs %= rhs;}
 
@@ -682,10 +704,11 @@ class Integer {
     // operator <<
     // -----------
 
-    /**
-     * <your documentation>
-     * @throws invalid_argument if (rhs < 0)
-     */
+        /**
+         * @param lhs the left hand operand
+         * @param rhs the right hand operand
+         * @return lhs left-shifted by rhs digits
+         */
     friend Integer operator << (Integer lhs, int rhs) {
         return lhs <<= rhs;}
 
@@ -693,10 +716,12 @@ class Integer {
     // operator >>
     // -----------
 
-    /**
-     * <your documentation>
-     * @throws invalid_argument if (rhs < 0)
-     */
+
+        /**
+         * @param lhs the left hand operand
+         * @param rhs the right hand operand
+         * @return lhs right-shifted by rhs digits
+         */
     friend Integer operator >> (Integer lhs, int rhs) {
         return lhs >>= rhs;}
 
@@ -704,9 +729,11 @@ class Integer {
     // operator <<
     // -----------
 
-    /**
-     * <your documentation>
-     */
+        /**
+         * @param lhs the output stream to use
+         * @param rhs the Integer to output
+         * @return lhs
+         */
     friend std::ostream& operator << (std::ostream& lhs, const Integer& rhs) {
         // <your code>
         if(rhs.negative)
@@ -720,10 +747,11 @@ class Integer {
     // abs
     // ---
 
-    /**
-     * absolute value
-     * <your documentation>
-     */
+        /**
+         * absolute value
+         * @param x an Integer
+         * @return the absolute value of x (without modifying x)
+         */
     friend Integer abs (Integer x) {
         return x.abs();}
 
@@ -731,11 +759,12 @@ class Integer {
     // pow
     // ---
 
-    /**
-     * power
-     * <your documentation>
-     * @throws invalid_argument if ((x == 0) && (e == 0)) || (e < 0)
-     */
+        /**
+         * power
+         * @param x the Integer
+         * @param e the power to exponentiate to
+         * @return x^e
+         */
     friend Integer pow (Integer x, int e) {
         return x.pow(e);}
 
@@ -780,13 +809,14 @@ class Integer {
         // constructors
         // ------------
 
-        /**
-         * <your documentation>
-         */
+
         // default constructor
         Integer(){
             Integer(0);
         }
+        /**
+         * @param value the value to assign to the Integer
+         */
         Integer (int value) {
             // <your code>
             //size = 0;
@@ -818,7 +848,7 @@ class Integer {
         }
 
         /**
-         * <your documentation>
+         * @param value the value to assign to the Integer
          * @throws invalid_argument if value is not a valid representation of an Integer
          */
         explicit Integer (const std::string& value) {
@@ -862,7 +892,8 @@ class Integer {
         // ----------
 
         /**
-         * <your documentation>
+         * @return the result of the negation
+         * negation operation for Integer
          */
         Integer operator - () const {
             // <your code>
@@ -878,14 +909,15 @@ class Integer {
         // -----------
 
         /**
-         * <your documentation>
+         * @return the result of the incrementation (pre)
+         * pre incrementation operation for Integer
          */
         Integer& operator ++ () {
             *this += 1;
             return *this;}
-
         /**
-         * <your documentation>
+         * @return the result of the incrementation (pos)
+         * pos incrementation operation for Integer
          */
         Integer operator ++ (int) {
             Integer x = *this;
@@ -895,16 +927,17 @@ class Integer {
         // -----------
         // operator --
         // -----------
-
         /**
-         * <your documentation>
+         * @return the result of the decrementation (pre)
+         * pre decrementation operation for Integer
          */
         Integer& operator -- () {
             *this -= 1;
             return *this;}
 
         /**
-         * <your documentation>
+         * @return the result of the decrementation (pos)
+         * pos decrementation operation for Integer
          */
         Integer operator -- (int) {
             Integer x = *this;
@@ -915,8 +948,10 @@ class Integer {
         // operator +=
         // -----------
 
-        /**
-         * <your documentation>
+         /**
+         * @param rhs an Integer as addend
+         * @return the result of the addition
+         * += operation for Integer
          */
         Integer& operator += (const Integer& rhs) {
             cout<<"+="<<endl;
@@ -961,8 +996,11 @@ class Integer {
         // operator -=
         // -----------
 
+
         /**
-         * <your documentation>
+         * @param rhs an Integer as subtrahend
+         * @return the result of the subtraction
+         * -= operation for Integer
          */
         Integer& operator -= (const Integer& rhs) {
             // <your code>
@@ -1008,7 +1046,9 @@ class Integer {
         // -----------
 
         /**
-         * <your documentation>
+         * @param rhs an Integer as multiplier
+         * @return the result of the multiplication
+         * *= operation for Integer
          */
         Integer& operator *= (const Integer& rhs) {
             // <your code>
@@ -1034,9 +1074,12 @@ class Integer {
         // operator /=
         // -----------
 
+
         /**
-         * <your documentation>
-         * @throws invalid_argument if (rhs == 0)
+         * @param rhs an Integer as divider
+         * @return the result of the division
+         * @throw invalid_argument if (rhs == 0)
+         * /= operation for Integer
          */
         Integer& operator /= (const Integer& rhs) {
             // <your code>
@@ -1063,8 +1106,10 @@ class Integer {
         // -----------
 
         /**
-         * <your documentation>
-         * @throws invalid_argument if (rhs <= 0)
+         * @param rhs an Integer as modulor
+         * @return the result of the modulo operation
+         * @throw invalid_argument if (rhs <= 0)
+         * %= operation for Integer
          */
         Integer& operator %= (const Integer& rhs) {
             // <your code>
@@ -1082,7 +1127,10 @@ class Integer {
         // ------------
 
         /**
-         * <your documentation>
+         * @param n an int (the number of digits to shift)
+         * @return the result of the left shift operation
+         * @throw invalid_argument if (n < 0)
+         * <<= operation for Integer
          */
         Integer& operator <<= (int n) {
             // <your code>
@@ -1098,7 +1146,10 @@ class Integer {
         // ------------
 
         /**
-         * <your documentation>
+         * @param n an int (the number of digits to shift)
+         * @return the result of the right shift operation
+         * @throw invalid_argument if (n < 0)
+         * >>= operation for Integer
          */
         Integer& operator >>= (int n) {
             // <your code>
@@ -1114,8 +1165,8 @@ class Integer {
         // ---
 
         /**
-         * absolute value
-         * <your documentation>
+         * absolute value operation
+         * @return the result of the absolute value
          */
         Integer& abs () {
             // <your code>
@@ -1129,9 +1180,10 @@ class Integer {
         // ---
 
         /**
-         * power
-         * <your documentation>
-         * @throws invalid_argument if ((this == 0) && (e == 0)) or (e < 0)
+         * power operation
+         * @e an int as the number of power the Integer get raised to
+         * @throw invalid_argument if (this == 0) && (e == 0)
+         * @throw invalid_argument if (e < 0)
          */
     Integer& pow (int e) {
             // <your code>
@@ -1143,20 +1195,17 @@ class Integer {
                 *this = 1;
                 return *this;
             }
-
-            Integer n = *this;
-            Integer result = 1;
-
+            Integer d = *this;
+            Integer res = 1;
             if(e > 1)
-                result = n.pow(e/2); 
-
-            if(!(e & 1) )       // even
-                result *= result;
-            else{       // odd
-                result *= result;
-                result *= *this;
+                res = d.pow(e/2); 
+            if(!(e & 1) )      
+                res *= res;
+            else{      
+                res *= res;
+                res *= *this;
             }
-            *this = result;
+            *this = res;
             return *this;
     }
 };
