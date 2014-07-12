@@ -1,0 +1,111 @@
+Running main() from gtest_main.cc
+[==========] Running 51 tests from 1 test case.
+[----------] Global test environment set-up.
+[----------] 51 tests from Integer
+[ RUN      ] Integer.shift_left_digits
+[       OK ] Integer.shift_left_digits (0 ms)
+[ RUN      ] Integer.shift_left_digits_2
+[       OK ] Integer.shift_left_digits_2 (0 ms)
+[ RUN      ] Integer.shift_left_digits_3
+[       OK ] Integer.shift_left_digits_3 (0 ms)
+[ RUN      ] Integer.shift_left_digits_4
+[       OK ] Integer.shift_left_digits_4 (1 ms)
+[ RUN      ] Integer.shift_right_digits_1
+[       OK ] Integer.shift_right_digits_1 (0 ms)
+[ RUN      ] Integer.shift_right_digits_2
+[       OK ] Integer.shift_right_digits_2 (0 ms)
+[ RUN      ] Integer.shift_right_digits_3
+[       OK ] Integer.shift_right_digits_3 (0 ms)
+[ RUN      ] Integer.shift_right_digits_4
+[       OK ] Integer.shift_right_digits_4 (0 ms)
+[ RUN      ] Integer.plus_digits_1
+[       OK ] Integer.plus_digits_1 (0 ms)
+[ RUN      ] Integer.plus_digits_2
+[       OK ] Integer.plus_digits_2 (0 ms)
+[ RUN      ] Integer.plus_digits_3
+[       OK ] Integer.plus_digits_3 (0 ms)
+[ RUN      ] Integer.plus_digits_4
+[       OK ] Integer.plus_digits_4 (0 ms)
+[ RUN      ] Integer.minus_digits_1
+[       OK ] Integer.minus_digits_1 (0 ms)
+[ RUN      ] Integer.minus_digits_2
+[       OK ] Integer.minus_digits_2 (0 ms)
+[ RUN      ] Integer.minus_digits_3
+[       OK ] Integer.minus_digits_3 (0 ms)
+[ RUN      ] Integer.minus_digits_4
+[       OK ] Integer.minus_digits_4 (0 ms)
+[ RUN      ] Integer.multiplies_digits_1
+[       OK ] Integer.multiplies_digits_1 (0 ms)
+[ RUN      ] Integer.multiplies_digits_2
+[       OK ] Integer.multiplies_digits_2 (0 ms)
+[ RUN      ] Integer.multiplies_digits_3
+[       OK ] Integer.multiplies_digits_3 (0 ms)
+[ RUN      ] Integer.multiplies_digits_4
+[       OK ] Integer.multiplies_digits_4 (0 ms)
+[ RUN      ] Integer.multiplies_digits_5
+[       OK ] Integer.multiplies_digits_5 (0 ms)
+[ RUN      ] Integer.multiplies_digits_6
+[       OK ] Integer.multiplies_digits_6 (0 ms)
+[ RUN      ] Integer.multiplies_digits_7
+[       OK ] Integer.multiplies_digits_7 (0 ms)
+[ RUN      ] Integer.divides_digits_1
+[       OK ] Integer.divides_digits_1 (0 ms)
+[ RUN      ] Integer.divides_digits_2
+[       OK ] Integer.divides_digits_2 (0 ms)
+[ RUN      ] Integer.divides_digits_3
+[       OK ] Integer.divides_digits_3 (0 ms)
+[ RUN      ] Integer.divides_digits_4
+[       OK ] Integer.divides_digits_4 (0 ms)
+[ RUN      ] Integer.divides_digits_5
+[       OK ] Integer.divides_digits_5 (0 ms)
+[ RUN      ] Integer.constructor_1
+[       OK ] Integer.constructor_1 (0 ms)
+[ RUN      ] Integer.constructor_2
+[       OK ] Integer.constructor_2 (0 ms)
+[ RUN      ] Integer.constructor_3
+[       OK ] Integer.constructor_3 (0 ms)
+[ RUN      ] Integer.constructor_4
+[       OK ] Integer.constructor_4 (0 ms)
+[ RUN      ] Integer.abs_1
+[       OK ] Integer.abs_1 (0 ms)
+[ RUN      ] Integer.abs_2
+[       OK ] Integer.abs_2 (0 ms)
+[ RUN      ] Integer.abs_3
+[       OK ] Integer.abs_3 (0 ms)
+[ RUN      ] Integer.equal_to1
+[       OK ] Integer.equal_to1 (0 ms)
+[ RUN      ] Integer.equal_to2
+[       OK ] Integer.equal_to2 (0 ms)
+[ RUN      ] Integer.equal_to3
+[       OK ] Integer.equal_to3 (0 ms)
+[ RUN      ] Integer.equal_to4
+[       OK ] Integer.equal_to4 (0 ms)
+[ RUN      ] Integer.negation1
+[       OK ] Integer.negation1 (0 ms)
+[ RUN      ] Integer.negation2
+[       OK ] Integer.negation2 (0 ms)
+[ RUN      ] Integer.negation3
+[       OK ] Integer.negation3 (0 ms)
+[ RUN      ] Integer.negation4
+[       OK ] Integer.negation4 (0 ms)
+[ RUN      ] Integer.output1
+[       OK ] Integer.output1 (0 ms)
+[ RUN      ] Integer.output2
+[       OK ] Integer.output2 (0 ms)
+[ RUN      ] Integer.output3
+[       OK ] Integer.output3 (0 ms)
+[ RUN      ] Integer.output4
+[       OK ] Integer.output4 (0 ms)
+[ RUN      ] Integer.pow_1
+[       OK ] Integer.pow_1 (34 ms)
+[ RUN      ] Integer.pow_2
+[       OK ] Integer.pow_2 (0 ms)
+[ RUN      ] Integer.pow_3
+[       OK ] Integer.pow_3 (0 ms)
+[ RUN      ] Integer.pow_4
+[       OK ] Integer.pow_4 (0 ms)
+[----------] 51 tests from Integer (36 ms total)
+
+[----------] Global test environment tear-down
+[==========] 51 tests from 1 test case ran. (36 ms total)
+[  PASSED  ] 51 tests.
