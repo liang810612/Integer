@@ -1,0 +1,283 @@
+commit 4074f59a66fc899748d22f18def329eec56f13d0
+Author: Jishen Li <ljs765@gmail.com>
+Date:   Sat Jul 12 18:03:28 2014 -0500
+
+    trunin version
+
+commit e0c24defc9391d59bcc47f9b7409d9331cb49123
+Author: Jishen Li <ljs765@gmail.com>
+Date:   Sat Jul 12 17:54:41 2014 -0500
+
+    add html files
+
+commit 2786053a9979fab201aa44497e311a8441ca6831
+Author: Jishen Li <ljs765@gmail.com>
+Date:   Sat Jul 12 17:46:22 2014 -0500
+
+    add documentations
+
+commit 536dd4c276383f2d3d19e8af2e61dbfa8c4ac8e9
+Author: Jishen Li <ljs765@gmail.com>
+Date:   Sat Jul 12 17:32:55 2014 -0500
+
+    add files
+
+commit f11dc48306400a8f241782b987bb7a05cc0ab129
+Author: LiJishen <jishen@utexas.edu>
+Date:   Sat Jul 12 17:28:01 2014 -0500
+
+    Delete makefile
+
+commit 0aaa20ce889186fbd5f4182cd52da42d9d2977df
+Author: LiJishen <jishen@utexas.edu>
+Date:   Sat Jul 12 17:27:53 2014 -0500
+
+    Delete TestInteger.sample.out
+
+commit f8ac984799efc0d5bc40bb21b2d7272f3b8f2f4c
+Author: LiJishen <jishen@utexas.edu>
+Date:   Sat Jul 12 17:27:46 2014 -0500
+
+    Delete RunInteger.sample.out
+
+commit 72949bc6c725f3cf2c96c8ca180052a0018863a8
+Author: LiJishen <jishen@utexas.edu>
+Date:   Sat Jul 12 17:27:42 2014 -0500
+
+    Delete RunInteger.c++
+
+commit 9ffdab3091adaaa363ef56123432f8c4b407e1d9
+Author: LiJishen <jishen@utexas.edu>
+Date:   Sat Jul 12 17:26:14 2014 -0500
+
+    Delete TestInteger.gcno
+
+commit 9b5f514164eecc599da75960686248c7a0262fe5
+Author: LiJishen <jishen@utexas.edu>
+Date:   Sat Jul 12 17:26:09 2014 -0500
+
+    Delete TestInteger.gcda
+
+commit d34461d02a4de78b5bfce6b8b2b09fb5c87efe0e
+Author: LiJishen <jishen@utexas.edu>
+Date:   Sat Jul 12 17:26:05 2014 -0500
+
+    Delete TestInteger.c++
+
+commit 20e671790955f083abfdaa5657c31c9b5ee2725e
+Author: LiJishen <jishen@utexas.edu>
+Date:   Sat Jul 12 17:25:56 2014 -0500
+
+    Delete TestInteger
+
+commit 9984b1b51865645fc5a10b2c83433fe7f58c1c3c
+Author: LiJishen <jishen@utexas.edu>
+Date:   Sat Jul 12 17:25:50 2014 -0500
+
+    Delete RunInteger.gcno
+
+commit 81c7aa0073f43f9feb3c4b5c8568bcde06220d92
+Author: LiJishen <jishen@utexas.edu>
+Date:   Sat Jul 12 17:25:43 2014 -0500
+
+    Delete RunInteger
+
+commit 0e248eb804c80dc6b8108c002fb67599b7a156e1
+Author: LiJishen <jishen@utexas.edu>
+Date:   Sat Jul 12 17:25:20 2014 -0500
+
+    Delete Integer.h~
+
+commit 4b53e215612a21669969ee836228337ab84decf8
+Author: LiJishen <jishen@utexas.edu>
+Date:   Sat Jul 12 17:25:07 2014 -0500
+
+    Delete Integer.h
+
+commit 342295b727e542f74de8054a4adae7c5525ad287
+Author: Terry Liang <liang810612@hotmail.com>
+Date:   Fri Jul 11 14:54:59 2014 -0500
+
+    modify multiply_digits
+
+commit 459f8f43c162548cd62498e77eb35c951dd21860
+Author: Jishen Li <ljs765@gmail.com>
+Date:   Fri Jul 11 11:44:03 2014 -0500
+
+    fixed a multiply test case
+
+commit b9a57d8cd4b0861baf6b2c45dda4fa540a6cef4e
+Author: Jishen Li <ljs765@gmail.com>
+Date:   Fri Jul 11 11:27:34 2014 -0500
+
+    update
+
+commit f105c624f1d84d6460ce743d1616d27ee0f0ceef
+Author: Jishen Li <ljs765@gmail.com>
+Date:   Thu Jul 10 13:42:08 2014 -0500
+
+    constructor built
+
+commit e125ebffac9cd292e47520d1c845689a1cde6a75
+Author: Terry Liang <liang810612@hotmail.com>
+Date:   Thu Jul 10 13:00:52 2014 -0500
+
+    revised minus_digits
+
+commit 1e2b9ae3fc721abb7e5fb67d80a37489de948d8a
+Author: Terry Liang <liang810612@hotmail.com>
+Date:   Thu Jul 10 12:39:41 2014 -0500
+
+    minus_digit special case fail
+
+commit 4ae833309f3a470acb4e087f4288c913fff57185
+Author: Terry Liang <liang810612@hotmail.com>
+Date:   Thu Jul 10 11:19:45 2014 -0500
+
+    plus_digit no memory leak
+
+commit 0beca400a65a9cb9ac093447fbeb9a104ed7c05b
+Author: Jishen Li <ljs765@gmail.com>
+Date:   Wed Jul 9 23:28:03 2014 -0500
+
+    updated
+
+commit bd9a10235f3c92b1bf839bb5de58d637d0776de7
+Author: Jishen Li <ljs765@gmail.com>
+Date:   Wed Jul 9 23:25:24 2014 -0500
+
+    uodated
+
+commit c0d92f81c06c323e15d489fbc72defd38e6b0a29
+Author: Terry Liang <liang810612@hotmail.com>
+Date:   Wed Jul 9 21:08:31 2014 -0500
+
+    clean format
+
+commit 919c57f40e4eed70a7ce7a222336a1bea872df93
+Author: Terry Liang <liang810612@hotmail.com>
+Date:   Wed Jul 9 19:21:13 2014 -0500
+
+    modified divide_digits
+
+commit 8f6f9e96863b2ad16e0b7a986a7e0e8ab8a02251
+Author: Terry Liang <liang810612@hotmail.com>
+Date:   Wed Jul 9 14:49:09 2014 -0500
+
+    more test cases and finish divide_digits
+
+commit 4a233dc2ce852c55dc9aef2567b0c6ef62c6a61b
+Author: Terry Liang <liang810612@hotmail.com>
+Date:   Wed Jul 9 11:50:48 2014 -0500
+
+    divide_digit works
+
+commit b18bc6dcaa2886070d0b35274dc93acd5dabb0a7
+Author: Terry Liang <liang810612@hotmail.com>
+Date:   Wed Jul 9 10:55:40 2014 -0500
+
+    divide implemetation
+
+commit 8e607331c4780e70e4035ef6cb877a2ae862e0ab
+Author: Terry Liang <liang810612@hotmail.com>
+Date:   Tue Jul 8 22:23:34 2014 -0500
+
+    multiplu_digits works
+
+commit 4758df4a467bae10e933c08b4b752cb0d69aef5e
+Author: Terry Liang <liang810612@hotmail.com>
+Date:   Tue Jul 8 22:22:27 2014 -0500
+
+    multiplu_digits works
+
+commit b5e73c79b54cba6dbaf37834b0dbcf53e9a583d6
+Author: Jishen Li <ljs765@gmail.com>
+Date:   Tue Jul 8 21:49:57 2014 -0500
+
+    fixed minus
+
+commit 2d5998c2e1243218ff5dd64f28c8ca78bd66fe07
+Merge: 75565af 0db982f
+Author: Terry Liang <liang810612@hotmail.com>
+Date:   Mon Jul 7 12:36:50 2014 -0500
+
+    edit file for clean format
+
+commit 75565af529b12e6ae4475aa98e9f4faa74bb3334
+Merge: 7930e6e c0d6f54
+Author: Terry Liang <liang810612@hotmail.com>
+Date:   Mon Jul 7 12:34:36 2014 -0500
+
+    new update
+
+commit 0db982fa1fbebc5431fd7b37c0c30619a3aa9e79
+Author: Terry Linag <liang810612@utexas.edu>
+Date:   Mon Jul 7 12:34:23 2014 -0500
+
+    Delete TestInteger.gcno
+
+commit 13b3e59585f2082dfd2cda21dee728855b575c21
+Author: Terry Linag <liang810612@utexas.edu>
+Date:   Mon Jul 7 12:34:19 2014 -0500
+
+    Delete TestInteger.gcda
+
+commit 7930e6eb65b395e1f02b5b82c402c6c31a1c4e7e
+Author: Terry Liang <liang810612@hotmail.com>
+Date:   Mon Jul 7 12:33:19 2014 -0500
+
+    new update
+
+commit c0d6f543b2896360b9058946bb07cc442a9179cf
+Author: Jishen Li <ljs765@gmail.com>
+Date:   Mon Jul 7 12:28:53 2014 -0500
+
+    update
+
+commit 925cd1ee803fad3cf1fb5adb59c51f3c363a06b2
+Author: Jishen Li <ljs765@gmail.com>
+Date:   Mon Jul 7 12:26:15 2014 -0500
+
+    update
+
+commit e194bbf299de79471c76d96b5f9690f7146093ac
+Author: Jishen Li <ljs765@gmail.com>
+Date:   Mon Jul 7 12:24:12 2014 -0500
+
+    update
+
+commit 9eca0b81e4602c2a2095231baf03fb6325162558
+Author: Jishen Li <ljs765@gmail.com>
+Date:   Sun Jul 6 21:38:55 2014 -0500
+
+    add some test cases for plus and minus
+
+commit af2e1972eca41e3adff065c4a016e9448f096f54
+Author: Jishen Li <ljs765@gmail.com>
+Date:   Sun Jul 6 18:59:19 2014 -0500
+
+    got Minus working
+
+commit 2f5f3621321025499caaaa49bd4f89ccbc2957d3
+Author: Jishen Li <ljs765@gmail.com>
+Date:   Sun Jul 6 16:46:02 2014 -0500
+
+    Change TestInteger Commmand and Get PLUS working
+
+commit e3b11f805a678fdac1c4be2378e19488e8c34f1d
+Author: Terry Liang <liang810612@hotmail.com>
+Date:   Wed Jul 2 21:46:20 2014 -0500
+
+    added unit tests
+
+commit 68d6b077c351a9336f461157e430e6f34cff7eb8
+Author: Terry Liang <liang810612@hotmail.com>
+Date:   Wed Jul 2 18:05:30 2014 -0500
+
+    get shif digits working
+
+commit 8e04dc473a09792acf41353e4fab32e68a0f1b25
+Author: Terry Liang <liang810612@hotmail.com>
+Date:   Wed Jul 2 14:24:59 2014 -0500
+
+    first commit
