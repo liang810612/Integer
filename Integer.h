@@ -1187,10 +1187,8 @@ class Integer {
          */
     Integer& pow (int e) {
             // <your code>
-            if(*this == 0)
-                throw::invalid_argument("Integer::Integer()");
-            if(e < 0)
-                throw::invalid_argument("Integer::Integer()");
+            if(*this == 0) throw::invalid_argument("Integer::Integer()");
+            if(e < 0) throw::invalid_argument("Integer::Integer()");
             if (e == 0){
                 *this = 1;
                 return *this;
